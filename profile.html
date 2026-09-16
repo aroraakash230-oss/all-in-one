@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI - My Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            🎓 SkillBridge AI
+        </div>
+
+        <div class="module">
+            👤 My Profile
+        </div>
+
+    </header>
+
+
+    <main class="profile-container">
+
+        <div class="page-heading">
+
+            <span class="badge">
+                👤 Student Profile
+            </span>
+
+            <h1>Build Your Career Profile</h1>
+
+            <p>
+                Save your academic and career information so SkillBridge AI
+                can use it throughout your journey.
+            </p>
+
+        </div>
+
+
+        <!-- Personal Information -->
+
+        <section class="profile-form-card">
+
+            <h2>👤 Personal Information</h2>
+
+            <div class="profile-form-grid">
+
+                <div class="input-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input type="text" id="name" placeholder="Enter your full name">
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input type="email" id="email" placeholder="Enter your email">
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="phone">
+                        Phone
+                    </label>
+
+                    <input type="tel" id="phone" placeholder="Enter phone number">
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="language">
+                        Preferred Language
+                    </label>
+
+                    <select id="language">
+
+                        <option value="English">
+                            English
+                        </option>
+
+                        <option value="Hindi">
+                            हिन्दी
+                        </option>
+
+                        <option value="Hinglish">
+                            Hinglish
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Academic Information -->
+
+        <section class="profile-form-card">
+
+            <h2>🎓 Academic Information</h2>
+
+            <div class="profile-form-grid">
+
+                <div class="input-group">
+
+                    <label for="college">
+                        College / University
+                    </label>
+
+                    <input type="text" id="college" placeholder="Enter college name">
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="degree">
+                        Degree
+                    </label>
+
+                    <select id="degree">
+
+                        <option value="">
+                            Select degree
+                        </option>
+
+                        <option value="B.Tech">
+                            B.Tech
+                        </option>
+
+                        <option value="B.E.">
+                            B.E.
+                        </option>
+
+                        <option value="BCA">
+                            BCA
+                        </option>
+
+                        <option value="MCA">
+                            MCA
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="branch">
+                        Branch / Specialization
+                    </label>
+
+                    <input type="text" id="branch" placeholder="Example: Computer Science">
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="year">
+                        Current Year
+                    </label>
+
+                    <select id="year">
+
+                        <option value="">
+                            Select year
+                        </option>
+
+                        <option value="1st Year">
+                            1st Year
+                        </option>
+
+                        <option value="2nd Year">
+                            2nd Year
+                        </option>
+
+                        <option value="3rd Year">
+                            3rd Year
+                        </option>
+
+                        <option value="4th Year">
+                            4th Year
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Career Information -->
+
+        <section class="profile-form-card">
+
+            <h2>🎯 Career Information</h2>
+
+            <div class="profile-form-grid">
+
+                <div class="input-group">
+
+                    <label for="careerGoal">
+                        Career Goal
+                    </label>
+
+                    <input type="text" id="careerGoal" placeholder="Example: Software Developer">
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="experience">
+                        Experience Level
+                    </label>
+
+                    <select id="experience">
+
+                        <option value="Beginner">
+                            Beginner
+                        </option>
+
+                        <option value="Intermediate">
+                            Intermediate
+                        </option>
+
+                        <option value="Advanced">
+                            Advanced
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Profile Summary -->
+
+        <section class="profile-summary-card">
+
+            <h2>📊 Your SkillBridge Summary</h2>
+
+            <div class="profile-summary-grid">
+
+                <div>
+
+                    <span>
+                        Skill Score
+                    </span>
+
+                    <strong id="skillScore">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Courses
+                    </span>
+
+                    <strong id="courses">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Projects
+                    </span>
+
+                    <strong id="projects">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        XP
+                    </span>
+
+                    <strong id="xp">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Consent -->
+
+        <section class="profile-consent">
+
+            <label>
+
+                <input type="checkbox" id="profileConsent">
+
+                I understand that the information I provide can be used
+                to personalize my SkillBridge experience. I can update
+                my profile and personalization preferences later.
+
+            </label>
+
+        </section>
+
+
+        <!-- Buttons -->
+
+        <div class="profile-actions">
+
+            <button class="save-profile-btn" onclick="saveProfile()">
+
+                💾 Save Profile
+
+            </button>
+
+
+            <button class="view-profile-btn" onclick="viewSavedProfile()">
+
+                👁️ View Saved Profile
+
+            </button>
+
+
+            <button class="back-dashboard-btn" onclick="goDashboard()">
+
+                ← Dashboard
+
+            </button>
+
+        </div>
+
+
+        <div id="saveMessage" class="save-message">
+        </div>
+
+
+    </main>
+
+
+    <script>
+
+
+        /* =========================
+           LOAD EXISTING PROFILE
+           ========================= */
+
+        const savedProfile =
+            localStorage.getItem(
+                "skillbridge_profile"
+            );
+
+
+        if (savedProfile) {
+
+            const profile =
+                JSON.parse(savedProfile);
+
+
+            document.getElementById("name").value =
+                profile.name || "";
+
+            document.getElementById("email").value =
+                profile.email || "";
+
+            document.getElementById("phone").value =
+                profile.phone || "";
+
+            document.getElementById("language").value =
+                profile.language || "English";
+
+            document.getElementById("college").value =
+                profile.college || "";
+
+            document.getElementById("degree").value =
+                profile.degree || "";
+
+            document.getElementById("branch").value =
+                profile.branch || "";
+
+            document.getElementById("year").value =
+                profile.year || "";
+
+            document.getElementById("careerGoal").value =
+                profile.careerGoal || "";
+
+            document.getElementById("experience").value =
+                profile.experience || "Beginner";
+
+            document.getElementById("profileConsent").checked =
+                profile.consent === true;
+
+        }
+
+
+        /* =========================
+           LOAD PROGRESS
+           ========================= */
+
+        const skillScore =
+            localStorage.getItem(
+                "skillbridge_skill_score"
+            ) || "0";
+
+        const courses =
+            localStorage.getItem(
+                "skillbridge_courses_started"
+            ) || "0";
+
+        const projects =
+            localStorage.getItem(
+                "skillbridge_project_count"
+            ) || "0";
+
+        const learningXP =
+            Number(
+                localStorage.getItem(
+                    "skillbridge_learning_xp"
+                )
+            ) || 0;
+
+        const projectXP =
+            Number(
+                localStorage.getItem(
+                    "skillbridge_project_xp"
+                )
+            ) || 0;
+
+
+        document.getElementById("skillScore").textContent =
+            skillScore + "%";
+
+        document.getElementById("courses").textContent =
+            courses;
+
+        document.getElementById("projects").textContent =
+            projects;
+
+        document.getElementById("xp").textContent =
+            learningXP + projectXP;
+
+
+        /* =========================
+           SAVE PROFILE
+           ========================= */
+
+        function saveProfile() {
+
+            const consent =
+                document.getElementById(
+                    "profileConsent"
+                ).checked;
+
+
+            if (!consent) {
+
+                alert(
+                    "Please confirm your consent before saving your profile."
+                );
+
+                return;
+
+            }
+
+
+            const profile = {
+
+                name:
+                    document.getElementById("name").value.trim(),
+
+                email:
+                    document.getElementById("email").value.trim(),
+
+                phone:
+                    document.getElementById("phone").value.trim(),
+
+                language:
+                    document.getElementById("language").value,
+
+                college:
+                    document.getElementById("college").value.trim(),
+
+                degree:
+                    document.getElementById("degree").value,
+
+                branch:
+                    document.getElementById("branch").value.trim(),
+
+                year:
+                    document.getElementById("year").value,
+
+                careerGoal:
+                    document.getElementById("careerGoal").value.trim(),
+
+                experience:
+                    document.getElementById("experience").value,
+
+                consent:
+                    consent
+
+            };
+
+
+            localStorage.setItem(
+                "skillbridge_student_profile",
+                JSON.stringify(profile)
+            );
+
+
+            document.getElementById(
+                "saveMessage"
+            ).textContent =
+                "✅ Profile saved successfully!";
+
+
+            alert(
+                "Profile saved successfully!"
+            );
+
+        }
+
+
+        /* =========================
+           VIEW SAVED PROFILE
+           ========================= */
+
+        function viewSavedProfile() {
+
+            const data =
+                localStorage.getItem(
+                    "skillbridge_student_profile"
+                );
+
+
+            if (!data) {
+
+                alert(
+                    "No saved profile found. Please save your profile first."
+                );
+
+                return;
+
+            }
+
+
+            const profile =
+                JSON.parse(data);
+
+
+            alert(
+
+                "👤 SAVED PROFILE\n\n" +
+
+                "Name: " +
+                (profile.name || "Not provided") +
+
+                "\nCollege: " +
+                (profile.college || "Not provided") +
+
+                "\nDegree: " +
+                (profile.degree || "Not provided") +
+
+                "\nBranch: " +
+                (profile.branch || "Not provided") +
+
+                "\nYear: " +
+                (profile.year || "Not provided") +
+
+                "\nCareer Goal: " +
+                (profile.careerGoal || "Not provided") +
+
+                "\nLanguage: " +
+                (profile.language || "Not provided")
+
+            );
+
+        }
+
+
+        /* =========================
+           DASHBOARD
+           ========================= */
+
+        function goDashboard() {
+
+            window.location.href =
+                "dashboard.html";
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>

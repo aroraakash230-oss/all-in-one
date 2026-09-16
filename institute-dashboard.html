@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge AI | Institute Intelligence</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --primary: #6c63ff;
+            --primary2: #5148d8;
+            --dark: #111827;
+            --text: #172033;
+            --muted: #7f899b;
+            --line: #e9ebf2;
+            --bg: #f5f7fb;
+        }
+
+        body {
+            font-family: Inter, Segoe UI, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 255px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background:
+                radial-gradient(circle at 80% 10%, rgba(108, 99, 255, .2), transparent 25%),
+                #101522;
+            color: white;
+            padding: 25px 16px;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+            padding: 0 13px;
+            margin-bottom: 32px;
+        }
+
+        .logo span {
+            color: #8981ff;
+        }
+
+        .workspace-box {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 15px;
+            padding: 13px;
+            margin-bottom: 22px;
+        }
+
+        .workspace-box small {
+            color: #858da1;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .workspace-box strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .nav-title {
+            color: #747d90;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin: 20px 12px 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin: 4px 0;
+            border-radius: 11px;
+            color: #bbc1cf;
+            text-decoration: none;
+            font-size: 12px;
+            transition: .25s;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: white;
+            background: linear-gradient(90deg,
+                    rgba(108, 99, 255, .28),
+                    rgba(108, 99, 255, .08));
+        }
+
+        .nav-icon {
+            width: 24px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 255px;
+            width: calc(100% - 255px);
+            padding: 28px 32px;
+        }
+
+        /* TOPBAR */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .title-area h1 {
+            font-size: 25px;
+            letter-spacing: -.5px;
+        }
+
+        .title-area p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--line);
+            background: white;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+        }
+
+        .institute-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            border: 1px solid var(--line);
+            padding: 6px 13px 6px 6px;
+            border-radius: 30px;
+        }
+
+        .avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: white;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6c63ff, #4038a5);
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 210px;
+            border-radius: 25px;
+            padding: 31px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 90% 20%, rgba(255, 255, 255, .13), transparent 23%),
+                linear-gradient(135deg, #151b35, #4038a5);
+            margin-bottom: 20px;
+        }
+
+        .hero:before {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .08);
+            right: 70px;
+            bottom: -170px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            color: #c6c2ff;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .hero h2 {
+            font-size: 30px;
+            margin: 10px 0;
+        }
+
+        .hero p {
+            color: #d6d9ef;
+            max-width: 650px;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 19px;
+        }
+
+        .hero-btn {
+            border: none;
+            padding: 11px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .hero-btn.primary {
+            background: white;
+            color: #4d46ca;
+        }
+
+        .hero-btn.secondary {
+            color: white;
+            background: rgba(255, 255, 255, .09);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            background: white;
+            border: 1px solid #edf0f5;
+            border-radius: 18px;
+            padding: 18px;
+            position: relative;
+            overflow: hidden;
+            transition: .25s;
+        }
+
+        .stat:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(24, 39, 75, .08);
+        }
+
+        .stat-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            background: #f0efff;
+            display: grid;
+            place-items: center;
+            font-size: 19px;
+        }
+
+        .stat-change {
+            font-size: 10px;
+            color: #0b9b78;
+            background: #e9faf5;
+            padding: 5px 7px;
+            border-radius: 12px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 26px;
+            margin-top: 15px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        /* COMMON CARD */
+
+        .card {
+            background: white;
+            border: 1px solid #edf0f5;
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 5px 20px rgba(24, 39, 75, .035);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-header h3 {
+            font-size: 16px;
+        }
+
+        .card-header p,
+        .card-header span {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        /* READINESS */
+
+        .readiness-layout {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            min-width: 150px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            position: relative;
+            background: conic-gradient(var(--primary) 78%,
+                    #eceef4 0);
+        }
+
+        .circle:before {
+            content: "";
+            position: absolute;
+            width: 116px;
+            height: 116px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .circle-content {
+            position: relative;
+            text-align: center;
+        }
+
+        .circle-content strong {
+            display: block;
+            font-size: 30px;
+        }
+
+        .circle-content span {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .readiness-info h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .readiness-info p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .readiness-list {
+            margin-top: 14px;
+        }
+
+        .readiness-list div {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 10px;
+            color: #697386;
+            margin-top: 7px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        /* SKILL MATRIX */
+
+        .skill {
+            margin-bottom: 15px;
+        }
+
+        .skill:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-head {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            margin-bottom: 6px;
+        }
+
+        .skill-head span {
+            color: var(--muted);
+        }
+
+        .bar {
+            height: 7px;
+            background: #edf0f5;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #6c63ff, #918aff);
+        }
+
+        /* GAPS */
+
+        .gap {
+            padding: 14px;
+            background: #f8f9fc;
+            border-radius: 14px;
+            margin-bottom: 10px;
+            border: 1px solid #eef0f4;
+        }
+
+        .gap-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gap-top strong {
+            font-size: 12px;
+        }
+
+        .gap-percent {
+            font-size: 10px;
+            color: #d16a4c;
+            font-weight: 700;
+        }
+
+        .gap p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.5;
+            margin-top: 6px;
+        }
+
+        .priority {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 7px;
+            background: #fff2ec;
+            color: #c95f42;
+            border-radius: 10px;
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+        /* DEMAND */
+
+        .demand-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 65px;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 0;
+            border-bottom: 1px solid #f0f1f5;
+        }
+
+        .demand-row:last-child {
+            border-bottom: none;
+        }
+
+        .demand-name {
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .demand-bar {
+            height: 6px;
+            background: #edf0f5;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .demand-fill {
+            height: 100%;
+            background: #00a896;
+        }
+
+        .demand-level {
+            text-align: right;
+            font-size: 9px;
+            color: #079178;
+            font-weight: 700;
+        }
+
+        /* TRAINING */
+
+        .training-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 11px;
+        }
+
+        .training {
+            border: 1px solid #edf0f5;
+            padding: 15px;
+            border-radius: 14px;
+            transition: .2s;
+        }
+
+        .training:hover {
+            border-color: #bbb7ff;
+            transform: translateY(-2px);
+        }
+
+        .training-icon {
+            font-size: 22px;
+        }
+
+        .training h4 {
+            font-size: 12px;
+            margin-top: 9px;
+        }
+
+        .training p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.5;
+            margin-top: 5px;
+        }
+
+        .training button {
+            border: none;
+            background: #f0efff;
+            color: #5d55d8;
+            padding: 6px 9px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        /* CONNECTIONS */
+
+        .connection {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 13px;
+            border: 1px solid #edf0f5;
+            border-radius: 14px;
+            margin-bottom: 9px;
+        }
+
+        .company {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .company-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            background: #f0efff;
+            display: grid;
+            place-items: center;
+        }
+
+        .company strong {
+            display: block;
+            font-size: 11px;
+        }
+
+        .company span {
+            display: block;
+            color: var(--muted);
+            font-size: 9px;
+            margin-top: 3px;
+        }
+
+        .connect-btn {
+            border: none;
+            padding: 7px 10px;
+            border-radius: 8px;
+            background: #f0efff;
+            color: #5e56d8;
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        /* ANALYTICS */
+
+        .analytics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .analytics-box {
+            padding: 15px;
+            background: #f8f9fc;
+            border-radius: 14px;
+        }
+
+        .analytics-box strong {
+            font-size: 20px;
+        }
+
+        .analytics-box p {
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.4;
+            margin-top: 4px;
+        }
+
+        /* AI */
+
+        .ai {
+            background:
+                radial-gradient(circle at 90% 20%, rgba(108, 99, 255, .25), transparent 30%),
+                linear-gradient(135deg, #171d3a, #30366e);
+            color: white;
+        }
+
+        .ai-label {
+            display: inline-block;
+            padding: 6px 9px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .1);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .5px;
+        }
+
+        .ai h3 {
+            margin-top: 12px;
+            font-size: 17px;
+        }
+
+        .ai p {
+            color: #cbd0e8;
+            font-size: 11px;
+            line-height: 1.65;
+            margin-top: 9px;
+        }
+
+        .ai-points {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .ai-point {
+            padding: 7px 9px;
+            background: rgba(255, 255, 255, .08);
+            border-radius: 9px;
+            font-size: 9px;
+        }
+
+        /* PRIVACY */
+
+        .privacy {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .lock {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 14px;
+            background: #e9faf5;
+            display: grid;
+            place-items: center;
+            font-size: 21px;
+        }
+
+        .privacy h3 {
+            font-size: 14px;
+        }
+
+        .privacy p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.5;
+            margin-top: 5px;
+        }
+
+        /* FOOTER */
+
+        .footer-note {
+            text-align: center;
+            color: #9aa2b1;
+            font-size: 9px;
+            padding: 20px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:1100px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .analytics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media(max-width:800px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 18px;
+            }
+
+            .hero h2 {
+                font-size: 25px;
+            }
+
+        }
+
+        @media(max-width:550px) {
+
+            .topbar {
+                align-items: flex-start;
+            }
+
+            .notification {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .readiness-layout {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .training-grid,
+            .analytics {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-btn {
+                width: 100%;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                Skill<span>Bridge</span> AI
+            </div>
+
+            <div class="workspace-box">
+                <small>Current workspace</small>
+                <strong>🏫 Institute Intelligence</strong>
+            </div>
+
+            <a class="nav-item active" href="institute-dashboard.html">
+                <span class="nav-icon">⌂</span>
+                Overview
+            </a>
+
+            <div class="nav-title">Student Intelligence</div>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">👨‍🎓</span>
+                Students
+            </a>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">🎯</span>
+                Skill Analytics
+            </a>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">⚠️</span>
+                Skill Gaps
+            </a>
+
+            <div class="nav-title">Development</div>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">📚</span>
+                Training Programs
+            </a>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">💻</span>
+                Projects
+            </a>
+
+            <div class="nav-title">Collaboration</div>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">🏢</span>
+                Industry Connect
+            </a>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">💼</span>
+                Opportunities
+            </a>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">📈</span>
+                Placement Analytics
+            </a>
+
+            <div class="nav-title">Account</div>
+
+            <a class="nav-item" href="index.html">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </aside>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="main">
+
+            <!-- TOPBAR -->
+
+            <div class="topbar">
+
+                <div class="title-area">
+
+                    <h1>
+                        Institute Intelligence
+                    </h1>
+
+                    <p>
+                        Connect student skills with education and industry demand.
+                    </p>
+
+                </div>
+
+                <div class="top-actions">
+
+                    <button class="notification">
+                        🔔
+                    </button>
+
+                    <div class="institute-profile">
+
+                        <div class="avatar">
+                            I
+                        </div>
+
+                        <div>
+                            <strong style="font-size:11px;">
+                                Institute Admin
+                            </strong>
+
+                            <div style="font-size:9px;color:#8992a2;">
+                                Administrator
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO -->
+
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <div class="hero-label">
+                        🏫 ACADEMIA • INDUSTRY • SKILLS
+                    </div>
+
+                    <h2>
+                        Build an industry-ready talent ecosystem.
+                    </h2>
+                    <p id="instituteWelcome">
+                        Welcome to your Institute Workspace 🏫
+                    </p>
+
+                    <p>
+                        SkillBridge transforms student skill signals into
+                        actionable institutional insights — helping institutes
+                        identify gaps, design training and connect students
+                        with relevant opportunities.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <button class="hero-btn primary" onclick="showMessage('Student analytics selected')">
+
+                            View Student Analytics →
+
+                        </button>
+
+                        <button class="hero-btn secondary" onclick="showMessage('Industry connection selected')">
+
+                            Connect with Industry
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- STATS -->
+
+            <section class="stats">
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            👨‍🎓
+                        </div>
+
+                        <div class="stat-change">
+                            +8.4%
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        2,450
+                    </strong>
+
+                    <span>
+                        Active Students
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            🎯
+                        </div>
+
+                        <div class="stat-change">
+                            +4.2%
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        78%
+                    </strong>
+
+                    <span>
+                        Skill Readiness
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            📚
+                        </div>
+
+                        <div class="stat-change">
+                            +3
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        18
+                    </strong>
+
+                    <span>
+                        Active Programs
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            🏢
+                        </div>
+
+                        <div class="stat-change">
+                            +6
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        34
+                    </strong>
+
+                    <span>
+                        Industry Connections
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- READINESS + SKILLS -->
+
+            <section class="grid">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>
+                                🎯 Student Skill Readiness
+                            </h3>
+
+                            <p>
+                                Aggregated institute-level intelligence
+                            </p>
+                        </div>
+
+                        <span>
+                            Current
+                        </span>
+
+                    </div>
+
+
+                    <div class="readiness-layout">
+
+                        <div class="circle">
+
+                            <div class="circle-content">
+
+                                <strong>
+                                    78%
+                                </strong>
+
+                                <span>
+                                    Readiness
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="readiness-info">
+
+                            <h4>
+                                Overall development signal
+                            </h4>
+
+                            <p>
+                                The current dashboard uses aggregated
+                                skill indicators to help identify areas
+                                where institutional training can add value.
+                            </p>
+
+                            <div class="readiness-list">
+
+                                <div>
+                                    <span class="dot"></span>
+                                    Technical skills
+                                </div>
+
+                                <div>
+                                    <span class="dot"></span>
+                                    Problem solving
+                                </div>
+
+                                <div>
+                                    <span class="dot"></span>
+                                    Project experience
+                                </div>
+
+                                <div>
+                                    <span class="dot"></span>
+                                    Industry readiness
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>
+                                📊 Skill Matrix
+                            </h3>
+
+                            <p>
+                                Student capability distribution
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-head">
+                            <strong>Programming</strong>
+                            <span>82%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill" style="width:82%"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-head">
+                            <strong>Problem Solving</strong>
+                            <span>74%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill" style="width:74%"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-head">
+                            <strong>Data & Analytics</strong>
+                            <span>61%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill" style="width:61%"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-head">
+                            <strong>Cloud & DevOps</strong>
+                            <span>48%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill" style="width:48%"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-head">
+                            <strong>Cybersecurity</strong>
+                            <span>42%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill" style="width:42%"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- GAPS + INDUSTRY DEMAND -->
+
+            <section class="grid">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>
+                                ⚠️ Priority Skill Gaps
+                            </h3>
+
+                            <p>
+                                Potential areas for institutional development
+                            </p>
+                        </div>
+
+                        <span>
+                            Insights
+                        </span>
+
+                    </div>
+
+
+                    <div class="gap">
+
+                        <div class="gap-top">
+
+                            <strong>
+                                Cloud Fundamentals
+                            </strong>
+
+                            <span class="gap-percent">
+                                52% gap signal
+                            </span>
+
+                        </div>
+
+                        <p>
+                            Increase practical cloud exposure through
+                            labs, projects and industry-led sessions.
+                        </p>
+
+                        <span class="priority">
+                            HIGH PRIORITY
+                        </span>
+
+                    </div>
+
+
+                    <div class="gap">
+
+                        <div class="gap-top">
+
+                            <strong>
+                                SQL & Data
+                            </strong>
+
+                            <span class="gap-percent">
+                                39% gap signal
+                            </span>
+
+                        </div>
+
+                        <p>
+                            Strengthen database and data-analysis practice
+                            through applied coursework.
+                        </p>
+
+                        <span class="priority">
+                            RECOMMENDED
+                        </span>
+
+                    </div>
+
+
+                    <div class="gap">
+
+                        <div class="gap-top">
+
+                            <strong>
+                                Industry Projects
+                            </strong>
+
+                            <span class="gap-percent">
+                                35% gap signal
+                            </span>
+
+                        </div>
+
+                        <p>
+                            Create more real-world project opportunities
+                            with external collaborators.
+                        </p>
+
+                        <span class="priority">
+                            DEVELOPMENT AREA
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>
+                                🏢 Industry Skill Demand
+                            </h3>
+
+                            <p>
+                                Example market requirement signals
+                            </p>
+                        </div>
+
+                        <span>
+                            Demand
+                        </span>
+
+                    </div>
+
+
+                    <div class="demand-row">
+
+                        <div class="demand-name">
+                            Python
+                        </div>
+
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width:91%"></div>
+                        </div>
+
+                        <div class="demand-level">
+                            HIGH
+                        </div>
+
+                    </div>
+
+
+                    <div class="demand-row">
+
+                        <div class="demand-name">
+                            SQL
+                        </div>
+
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width:86%"></div>
+                        </div>
+
+                        <div class="demand-level">
+                            HIGH
+                        </div>
+
+                    </div>
+
+
+                    <div class="demand-row">
+
+                        <div class="demand-name">
+                            Cloud
+                        </div>
+
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width:82%"></div>
+                        </div>
+
+                        <div class="demand-level">
+                            HIGH
+                        </div>
+
+                    </div>
+
+
+                    <div class="demand-row">
+
+                        <div class="demand-name">
+                            Java
+                        </div>
+
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width:76%"></div>
+                        </div>
+
+                        <div class="demand-level">
+                            HIGH
+                        </div>
+
+                    </div>
+
+
+                    <div class="demand-row">
+
+                        <div class="demand-name">
+                            Cybersecurity
+                        </div>
+
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width:63%"></div>
+                        </div>
+
+                        <div class="demand-level">
+                            MEDIUM
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- TRAINING + INDUSTRY -->
+
+            <section class="grid">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>
+                                📚 Recommended Training
+                            </h3>
+
+                            <p>
+                                Convert skill gaps into action
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="training-grid">
+
+                        <div class="training">
+
+                            <div class="training-icon">
+                                ☁️
+                            </div>
+
+                            <h4>
+                                Cloud Bootcamp
+                            </h4>
+
+                            <p>
+                                Practical cloud fundamentals and
+                                deployment projects.
+                            </p>
+
+                            <button onclick="showMessage('Cloud Bootcamp')">
+                                Explore
+                            </button>
+
+                        </div>
+
+
+                        <div class="training">
+
+                            <div class="training-icon">
+                                🐍
+                            </div>
+
+                            <h4>
+                                Python Development
+                            </h4>
+
+                            <p>
+                                Programming, automation and
+                                application development.
+                            </p>
+
+                            <button onclick="showMessage('Python Program')">
+                                Explore
+                            </button>
+
+                        </div>
+
+
+                        <div class="training">
+
+                            <div class="training-icon">
+                                🗄️
+                            </div>
+
+                            <h4>
+                                Data & SQL Lab
+                            </h4>
+
+                            <p>
+                                Database concepts using practical
+                                datasets and projects.
+                            </p>
+
+                            <button onclick="showMessage('SQL Lab')">
+                                Explore
+                            </button>
+
+                        </div>
+
+
+                        <div class="training">
+
+                            <div class="training-icon">
+                                🔐
+                            </div>
+
+                            <h4>
+                                Cybersecurity
+                            </h4>
+
+                            <p>
+                                Secure development and cybersecurity
+                                fundamentals.
+                            </p>
+
+                            <button onclick="showMessage('Cybersecurity Program')">
+                                Explore
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>
+                                🤝 Industry Connections
+                            </h3>
+
+                            <p>
+                                Build collaboration pathways
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="connection">
+
+                        <div class="company">
+
+                            <div class="company-icon">
+                                💻
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Technology Partners
+                                </strong>
+
+                                <span>
+                                    Skills • Projects
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <button class="connect-btn">
+                            Connect
+                        </button>
+
+                    </div>
+
+
+                    <div class="connection">
+
+                        <div class="company">
+
+                            <div class="company-icon">
+                                💼
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Internship Network
+                                </strong>
+
+                                <span>
+                                    Internship opportunities
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <button class="connect-btn">
+                            Explore
+                        </button>
+
+                    </div>
+
+
+                    <div class="connection">
+
+                        <div class="company">
+
+                            <div class="company-icon">
+                                🌎
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Global Partners
+                                </strong>
+
+                                <span>
+                                    International collaboration
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <button class="connect-btn">
+                            Explore
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ANALYTICS -->
+
+            <section class="card" style="margin-bottom:18px">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>
+                            📈 Student Development Analytics
+                        </h3>
+
+                        <p>
+                            Aggregated indicators for institutional planning
+                        </p>
+                    </div>
+
+                    <span>
+                        Overview
+                    </span>
+
+                </div>
+
+
+                <div class="analytics">
+
+                    <div class="analytics-box">
+                        <strong>72%</strong>
+                        <p>Students with projects</p>
+                    </div>
+
+                    <div class="analytics-box">
+                        <strong>64%</strong>
+                        <p>Students exploring opportunities</p>
+                    </div>
+
+                    <div class="analytics-box">
+                        <strong>41%</strong>
+                        <p>Students with internship experience</p>
+                    </div>
+
+                    <div class="analytics-box">
+                        <strong>86%</strong>
+                        <p>Active career profiles</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- AI -->
+
+            <section class="grid">
+
+                <div class="card ai">
+
+                    <span class="ai-label">
+                        🤖 RESPONSIBLE AI INSIGHT
+                    </span>
+
+                    <h3>
+                        Institutional Skill Intelligence
+                    </h3>
+
+                    <p>
+                        Current signals suggest that practical Cloud,
+                        SQL and industry-project exposure could be
+                        useful training priorities. These are decision-support
+                        insights, not automatic judgments about individual
+                        students.
+                    </p>
+
+                    <div class="ai-points">
+
+                        <span class="ai-point">
+                            ☁️ Cloud training
+                        </span>
+
+                        <span class="ai-point">
+                            🗄️ SQL practice
+                        </span>
+
+                        <span class="ai-point">
+                            💻 More projects
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="privacy">
+
+                        <div class="lock">
+                            🔐
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Privacy & Fairness
+                            </h3>
+
+                            <p>
+                                Institute analytics should use appropriate
+                                permissions and aggregated trends where
+                                individual-level information is unnecessary.
+                                Recommendations should remain explainable
+                                and reviewable.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <div class="footer-note">
+
+                SkillBridge AI • Institute Workspace •
+                Skill-based • Explainable • Privacy-conscious
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <script>
+
+        function showMessage(message) {
+
+            alert(
+                message +
+                "\n\nThis feature will be connected to the Institute workspace in the next development stage."
+            );
+
+        }
+        const instituteData =
+            localStorage.getItem("skillbridge_institute_profile");
+
+        if (instituteData) {
+
+            const institute =
+                JSON.parse(instituteData);
+
+            const welcome =
+                document.getElementById("instituteWelcome");
+
+            if (welcome && institute.instituteName) {
+
+                welcome.textContent =
+                    "Welcome, " +
+                    institute.instituteName +
+                    "! 🏫";
+
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

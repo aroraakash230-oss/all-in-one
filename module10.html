@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI - Career Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">🎓 SkillBridge AI</div>
+    <div class="module">Module 10 of 12</div>
+</header>
+
+<main class="profile-container">
+
+    <div class="page-heading">
+
+        <span class="badge">🤖 Responsible AI Career Assistant</span>
+
+        <h1>Ask SkillBridge AI</h1>
+
+        <p>
+            Get explanations about your skills, learning path,
+            projects and career opportunities.
+        </p>
+
+    </div>
+
+
+    <!-- AI Introduction -->
+
+    <section class="ai-intro">
+
+        <div class="ai-avatar">🤖</div>
+
+        <div>
+
+            <h2>Hello! I'm your SkillBridge Assistant</h2>
+
+            <p>
+                I can help you understand your skill gaps, explore
+                learning options and prepare for career opportunities.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Quick Questions -->
+
+    <section class="form-section">
+
+        <h2>💡 Quick Questions</h2>
+
+        <div class="question-grid">
+
+            <button onclick="askAI('What skills should I improve?')">
+                📊 What skills should I improve?
+            </button>
+
+            <button onclick="askAI('What should I learn next?')">
+                📚 What should I learn next?
+            </button>
+
+            <button onclick="askAI('How can I prepare for internships?')">
+                💼 How can I prepare for internships?
+            </button>
+
+            <button onclick="askAI('What project should I build?')">
+                💻 What project should I build?
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- Chat -->
+
+    <section class="chat-card">
+
+        <div class="chat-header">
+
+            <div>
+                <strong>🤖 SkillBridge Assistant</strong>
+                <small>Explainable career guidance</small>
+            </div>
+
+            <span class="online-status">● Available</span>
+
+        </div>
+
+
+        <div id="chatMessages" class="chat-messages">
+
+            <div class="message ai-message">
+
+                <div class="message-avatar">🤖</div>
+
+                <div class="message-text">
+                    Welcome! Ask me about your learning path,
+                    skills, projects or career preparation.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="chat-input">
+
+            <input
+                type="text"
+                id="userQuestion"
+                placeholder="Ask a career question..."
+                onkeydown="handleEnter(event)"
+            >
+
+            <button onclick="sendQuestion()">
+                Send →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- Explainability -->
+
+    <section class="form-section">
+
+        <h2>🔍 How AI Recommendations Work</h2>
+
+        <div class="ai-explain-grid">
+
+            <div class="ai-explain-card">
+
+                <div>📊</div>
+
+                <h3>Your Skills</h3>
+
+                <p>
+                    Recommendations can consider your assessment
+                    and learning progress.
+                </p>
+
+            </div>
+
+
+            <div class="ai-explain-card">
+
+                <div>🎯</div>
+
+                <h3>Your Goals</h3>
+
+                <p>
+                    Your selected career interests and opportunity
+                    preferences help personalize guidance.
+                </p>
+
+            </div>
+
+
+            <div class="ai-explain-card">
+
+                <div>💻</div>
+
+                <h3>Your Activities</h3>
+
+                <p>
+                    Courses, projects and practice activities can
+                    provide additional learning signals.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Responsible AI -->
+
+    <section class="fairness-card">
+
+        <div class="fairness-icon">🛡️</div>
+
+        <div>
+
+            <h2>Responsible AI</h2>
+
+            <p>
+                AI guidance is designed to support your decisions,
+                not make decisions for you. Recommendations should
+                be explainable, reviewable and change as your profile
+                develops.
+            </p>
+
+            <p>
+                SkillBridge AI does not guarantee employment,
+                internship selection or career success.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <button class="continue-btn" onclick="goToModule11()">
+        Continue to Progress & Privacy →
+    </button>
+
+</main>
+
+
+<script>
+
+    const skillScore =
+        localStorage.getItem("skillbridge_skill_score") || "0";
+
+    const courses =
+        localStorage.getItem("skillbridge_courses_started") || "0";
+
+    const projects =
+        localStorage.getItem("skillbridge_project_count") || "0";
+
+
+    function askAI(question) {
+
+        document.getElementById("userQuestion").value = question;
+
+        sendQuestion();
+
+    }
+
+
+    function handleEnter(event) {
+
+        if (event.key === "Enter") {
+
+            sendQuestion();
+
+        }
+
+    }
+
+
+    function sendQuestion() {
+
+        const input =
+            document.getElementById("userQuestion");
+
+        const question =
+            input.value.trim();
+
+        if (!question) {
+
+            return;
+
+        }
+
+
+        addMessage(question, "user");
+
+        input.value = "";
+
+
+        setTimeout(function() {
+
+            let response =
+                getAIResponse(question.toLowerCase());
+
+            addMessage(response, "ai");
+
+        }, 500);
+
+    }
+
+
+    function addMessage(text, type) {
+
+        const container =
+            document.getElementById("chatMessages");
+
+        const message =
+            document.createElement("div");
+
+        if (type === "user") {
+
+            message.className =
+                "message user-message";
+
+            message.innerHTML =
+                '<div class="message-text">' +
+                text +
+                '</div>';
+
+        }
+        else {
+
+            message.className =
+                "message ai-message";
+
+            message.innerHTML =
+                '<div class="message-avatar">🤖</div>' +
+                '<div class="message-text">' +
+                text +
+                '</div>';
+
+        }
+
+        container.appendChild(message);
+
+        container.scrollTop =
+            container.scrollHeight;
+
+    }
+
+
+    function getAIResponse(question) {
+
+        if (question.includes("skill")) {
+
+            return "Your current assessment score is " +
+                skillScore +
+                "%. Focus on the skill gaps identified in Module 5 and strengthen them through courses and projects.";
+
+        }
+
+
+        if (question.includes("learn") ||
+            question.includes("course")) {
+
+            return "A useful next step is to strengthen programming fundamentals, web development, databases and Git/GitHub. Choose learning resources according to your current level.";
+
+        }
+
+
+        if (question.includes("internship") ||
+            question.includes("job")) {
+
+            return "Prepare by improving relevant technical skills, building practical projects, maintaining a portfolio and reviewing the requirements of each opportunity before applying.";
+
+        }
+
+
+        if (question.includes("project")) {
+
+            return "Start with a project that matches your current skill level. A portfolio website or Student Skill Mapper can help you practice while creating evidence of your skills.";
+
+        }
+
+
+        return "Based on your current SkillBridge profile, continue improving your skills through learning and projects. I can help explain your assessment, roadmap, projects or opportunity preparation.";
+
+    }
+
+
+    function goToModule11() {
+
+        window.location.href =
+            "module11.html";
+
+    }
+
+</script>
+
+</body>
+</html>

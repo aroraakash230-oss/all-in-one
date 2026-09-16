@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge AI - Interest Discovery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        🎓 SkillBridge AI
+    </div>
+
+    <div class="module">
+        Module 2 of 12
+    </div>
+
+</header>
+
+
+<main class="profile-container">
+
+    <div class="page-heading">
+
+        <span class="badge">
+            🧭 Ethical Interest Discovery
+        </span>
+
+        <h1>Discover Your Career Interests</h1>
+
+        <p>
+            Explore different areas and activities. SkillBridge
+            uses your choices to understand your interests over time.
+        </p>
+
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <section class="progress-card">
+
+        <div class="progress-header">
+
+            <strong>Discovery Progress</strong>
+
+            <span id="progressText">0%</span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div id="progressFill"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CAREER AREAS -->
+
+    <section class="form-section">
+
+        <h2>🎯 Explore Career Areas</h2>
+
+        <p class="helper">
+            Select the areas you are curious about. Your selection
+            is not a permanent career decision.
+        </p>
+
+
+        <div class="career-grid">
+
+
+            <label class="career-card">
+
+                <input type="checkbox" name="career" value="AI / ML">
+
+                <div class="career-icon">🤖</div>
+
+                <strong>AI / Machine Learning</strong>
+
+                <small>
+                    Intelligent systems, machine learning and automation.
+                </small>
+
+            </label>
+
+
+            <label class="career-card">
+
+                <input type="checkbox" name="career" value="Web Development">
+
+                <div class="career-icon">🌐</div>
+
+                <strong>Web Development</strong>
+
+                <small>
+                    Websites and modern web applications.
+                </small>
+
+            </label>
+
+
+            <label class="career-card">
+
+                <input type="checkbox" name="career" value="App Development">
+
+                <div class="career-icon">📱</div>
+
+                <strong>App Development</strong>
+
+                <small>
+                    Mobile applications and digital products.
+                </small>
+
+            </label>
+
+
+            <label class="career-card">
+
+                <input type="checkbox" name="career" value="Cybersecurity">
+
+                <div class="career-icon">🔐</div>
+
+                <strong>Cybersecurity</strong>
+
+                <small>
+                    Security, privacy and protection of systems.
+                </small>
+
+            </label>
+
+
+            <label class="career-card">
+
+                <input type="checkbox" name="career" value="Data Science">
+
+                <div class="career-icon">📊</div>
+
+                <strong>Data Science</strong>
+
+                <small>
+                    Data analysis, statistics and insights.
+                </small>
+
+            </label>
+
+
+            <label class="career-card">
+
+                <input type="checkbox" name="career" value="Cloud / DevOps">
+
+                <div class="career-icon">☁️</div>
+
+                <strong>Cloud / DevOps</strong>
+
+                <small>
+                    Cloud infrastructure and deployment.
+                </small>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- TRY BEFORE CHOOSE -->
+
+    <section class="form-section">
+
+        <h2>🧪 Try Before You Choose</h2>
+
+        <p class="helper">
+            Choose one mini experience. This gives you a chance
+            to explore an area instead of relying only on a question.
+        </p>
+
+
+        <div class="activity-grid">
+
+
+            <label class="activity-card">
+
+                <input
+                    type="radio"
+                    name="activity"
+                    value="coding">
+
+                <div class="activity-icon">
+                    💻
+                </div>
+
+                <strong>Mini Coding Challenge</strong>
+
+                <small>
+                    Solve a small programming problem.
+                </small>
+
+            </label>
+
+
+            <label class="activity-card">
+
+                <input
+                    type="radio"
+                    name="activity"
+                    value="data">
+
+                <div class="activity-icon">
+                    📊
+                </div>
+
+                <strong>Data Challenge</strong>
+
+                <small>
+                    Find a pattern in a small dataset.
+                </small>
+
+            </label>
+
+
+            <label class="activity-card">
+
+                <input
+                    type="radio"
+                    name="activity"
+                    value="design">
+
+                <div class="activity-icon">
+                    🎨
+                </div>
+
+                <strong>Design Challenge</strong>
+
+                <small>
+                    Create an idea for a simple interface.
+                </small>
+
+            </label>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- BEHAVIOUR -->
+
+    <section class="form-section">
+
+        <h2>🧠 Behaviour-Based Discovery</h2>
+
+        <p class="helper">
+            With your permission, SkillBridge can consider signals
+            such as areas explored, activities attempted, learning
+            progress and projects completed.
+        </p>
+
+
+        <div class="privacy-box">
+
+            <label class="consent">
+
+                <input
+                    type="checkbox"
+                    id="activityConsent">
+
+                <span>
+                    I agree to activity-based personalization
+                    for learning and career recommendations.
+                </span>
+
+            </label>
+
+            <p class="privacy-note">
+                You can change this preference later.
+                Your activity does not permanently define your career.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- EXPLAINABILITY -->
+
+    <section class="form-section">
+
+        <h2>⚖️ Responsible Recommendations</h2>
+
+
+        <div class="info-grid">
+
+
+            <div class="info-card">
+
+                <div class="info-icon">🔍</div>
+
+                <strong>Explainable</strong>
+
+                <p>
+                    Recommendations should explain which relevant
+                    activities or skills contributed to them.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-icon">🔄</div>
+
+                <strong>Changeable</strong>
+
+                <p>
+                    Your interests can change as you learn and
+                    explore new areas.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-icon">⚖️</div>
+
+                <strong>Fair</strong>
+
+                <p>
+                    Recommendations should focus on relevant
+                    skills and activities rather than personal
+                    characteristics unrelated to the opportunity.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- CONTINUE -->
+
+    <div class="continue-area">
+
+        <button
+            type="button"
+            class="continue-btn"
+            onclick="goToModule3()">
+
+            Continue to Career Explorer →
+
+        </button>
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =========================
+   CAREER CARD SELECTION
+========================= */
+
+const careerInputs =
+    document.querySelectorAll(
+        'input[name="career"]'
+    );
+
+
+careerInputs.forEach(function(input) {
+
+    input.addEventListener("change", function() {
+
+        const card =
+            input.closest(".career-card");
+
+        if (input.checked) {
+
+            card.classList.add("selected");
+
+        } else {
+
+            card.classList.remove("selected");
+
+        }
+
+        updateProgress();
+
+    });
+
+});
+
+
+
+/* =========================
+   ACTIVITY SELECTION
+========================= */
+
+const activityInputs =
+    document.querySelectorAll(
+        'input[name="activity"]'
+    );
+
+
+activityInputs.forEach(function(input) {
+
+    input.addEventListener("change", function() {
+
+        document
+            .querySelectorAll(".activity-card")
+            .forEach(function(card) {
+
+                card.classList.remove("selected");
+
+            });
+
+
+        input
+            .closest(".activity-card")
+            .classList.add("selected");
+
+
+        updateProgress();
+
+    });
+
+});
+
+
+
+/* =========================
+   CONSENT
+========================= */
+
+document
+    .getElementById("activityConsent")
+    .addEventListener(
+        "change",
+        updateProgress
+    );
+
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+function updateProgress() {
+
+    const careers =
+        document.querySelectorAll(
+            'input[name="career"]:checked'
+        ).length;
+
+
+    const activity =
+        document.querySelector(
+            'input[name="activity"]:checked'
+        );
+
+
+    const consent =
+        document.getElementById(
+            "activityConsent"
+        ).checked;
+
+
+    let progress = 0;
+
+
+    if (careers > 0) {
+
+        progress += 40;
+
+    }
+
+
+    if (activity) {
+
+        progress += 30;
+
+    }
+
+
+    if (consent) {
+
+        progress += 30;
+
+    }
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent = progress + "%";
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width = progress + "%";
+
+}
+
+
+
+/* =========================
+   GO TO MODULE 3
+========================= */
+
+function goToModule3() {
+
+    const careers =
+        document.querySelectorAll(
+            'input[name="career"]:checked'
+        );
+
+
+    const activity =
+        document.querySelector(
+            'input[name="activity"]:checked'
+        );
+
+
+    const consent =
+        document.getElementById(
+            "activityConsent"
+        ).checked;
+
+
+    if (careers.length === 0) {
+
+        alert(
+            "Please select at least one career area."
+        );
+
+        return;
+
+    }
+
+
+    if (!activity) {
+
+        alert(
+            "Please select one mini activity."
+        );
+
+        return;
+
+    }
+
+
+    if (!consent) {
+
+        alert(
+            "Please provide consent to use activity-based personalization."
+        );
+
+        return;
+
+    }
+
+
+    /* Save selections */
+
+    const selectedCareers = [];
+
+
+    careers.forEach(function(item) {
+
+        selectedCareers.push(
+            item.value
+        );
+
+    });
+
+
+    localStorage.setItem(
+        "skillbridge_interest_areas",
+        JSON.stringify(selectedCareers)
+    );
+
+
+    localStorage.setItem(
+        "skillbridge_interest_activity",
+        activity.value
+    );
+
+
+    localStorage.setItem(
+        "skillbridge_activity_consent",
+        "true"
+    );
+
+
+    /* Go directly to Module 3 */
+
+    window.location.href =
+        "module3.html";
+
+}
+
+
+updateProgress();
+
+</script>
+
+
+</body>
+</html>

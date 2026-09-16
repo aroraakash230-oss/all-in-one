@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI | Student Profile</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            background: #111827;
+            color: white;
+            padding: 25px 18px;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 35px;
+            padding: 0 12px;
+        }
+
+        .logo span {
+            color: #6c63ff;
+        }
+
+        .nav-title {
+            font-size: 11px;
+            color: #8d96a8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 20px 12px 10px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin: 5px 0;
+            border-radius: 10px;
+            color: #c9cfda;
+            text-decoration: none;
+            transition: .2s;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: #252c3d;
+            color: white;
+        }
+
+        .nav-icon {
+            width: 24px;
+            text-align: center;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 30px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .topbar h1 {
+            font-size: 26px;
+        }
+
+        .topbar p {
+            color: #7d8797;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .step {
+            background: #eceaff;
+            color: #625be3;
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(135deg, #171d3a, #4038a5);
+            color: white;
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 22px;
+        }
+
+        .hero small {
+            color: #cbd0ff;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .hero h2 {
+            font-size: 29px;
+            margin: 10px 0;
+        }
+
+        .hero p {
+            color: #d5d9f5;
+            max-width: 720px;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* CARD */
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(24, 39, 75, .05);
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            margin-bottom: 22px;
+        }
+
+        .card-header h3 {
+            font-size: 18px;
+        }
+
+        .card-header p {
+            color: #8a93a3;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* FORM */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: #e25555;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #e3e6ed;
+            border-radius: 11px;
+            outline: none;
+            font-size: 13px;
+            background: #fafbfc;
+            transition: .2s;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #6c63ff;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, .1);
+        }
+
+        /* INFO BOX */
+
+        .info-box {
+            display: flex;
+            gap: 14px;
+            padding: 17px;
+            border-radius: 14px;
+            background: #f5f3ff;
+            margin-top: 22px;
+        }
+
+        .info-icon {
+            font-size: 22px;
+        }
+
+        .info-box strong {
+            font-size: 13px;
+        }
+
+        .info-box p {
+            color: #747e90;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-top: 4px;
+        }
+
+        /* CONSENT */
+
+        .consent-card {
+            border: 1px solid #e8eaf0;
+            border-radius: 15px;
+            padding: 18px;
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+            margin-top: 22px;
+        }
+
+        .consent-card input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: #6c63ff;
+        }
+
+        .consent-card label {
+            margin: 0;
+            font-weight: 500;
+            line-height: 1.5;
+            color: #5e687a;
+        }
+
+        .consent-card strong {
+            color: #172033;
+        }
+
+        /* BUTTON */
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .back-btn {
+            border: 1px solid #e2e5ec;
+            background: white;
+            color: #626b7c;
+            padding: 13px 20px;
+            border-radius: 11px;
+            font-weight: 700;
+        }
+
+        .continue-btn {
+            border: none;
+            background: linear-gradient(135deg, #6c63ff, #5148d8);
+            color: white;
+            padding: 14px 23px;
+            border-radius: 11px;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(108, 99, 255, .22);
+            transition: .2s;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(108, 99, 255, .3);
+        }
+
+        /* PROGRESS */
+
+        .journey-progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+
+        .progress-line {
+            height: 5px;
+            flex: 1;
+            background: #e7e9ef;
+            border-radius: 10px;
+        }
+
+        .progress-line.active {
+            background: #6c63ff;
+        }
+
+        .progress-text {
+            color: #7d8798;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:800px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 16px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .input-group.full {
+                grid-column: auto;
+            }
+
+            .hero h2 {
+                font-size: 24px;
+            }
+
+        }
+
+        @media(max-width:500px) {
+
+            .actions {
+                flex-direction: column-reverse;
+                gap: 12px;
+            }
+
+            .back-btn,
+            .continue-btn {
+                width: 100%;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                Skill<span>Bridge</span> AI
+            </div>
+
+            <a class="nav-item" href="dashboard-new.html">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <div class="nav-title">
+                Journey
+            </div>
+
+            <a class="nav-item active" href="module1.html">
+                <span class="nav-icon">👤</span>
+                Student Profile
+            </a>
+
+            <a class="nav-item" href="module2.html">
+                <span class="nav-icon">🧭</span>
+                Interest Discovery
+            </a>
+
+            <a class="nav-item" href="module3.html">
+                <span class="nav-icon">🌍</span>
+                Career Explorer
+            </a>
+
+            <a class="nav-item" href="module4.html">
+                <span class="nav-icon">📝</span>
+                Skill Assessment
+            </a>
+
+            <div class="nav-title">
+                Development
+            </div>
+
+            <a class="nav-item" href="module6.html">
+                <span class="nav-icon">🗺️</span>
+                Roadmap
+            </a>
+
+            <a class="nav-item" href="module7.html">
+                <span class="nav-icon">📚</span>
+                Learning
+            </a>
+
+            <a class="nav-item" href="module8.html">
+                <span class="nav-icon">💻</span>
+                Projects
+            </a>
+
+            <a class="nav-item" href="module9.html">
+                <span class="nav-icon">💼</span>
+                Opportunities
+            </a>
+
+            <div class="nav-title">
+                Account
+            </div>
+
+            <a class="nav-item" href="profile.html">
+                <span class="nav-icon">⚙️</span>
+                My Profile
+            </a>
+
+        </aside>
+
+
+        <!-- MAIN -->
+
+        <main class="main">
+
+            <div class="topbar">
+
+                <div>
+                    <h1>Student Profile</h1>
+                    <p>Tell SkillBridge about your academic journey.</p>
+                </div>
+
+                <div class="step">
+                    MODULE 01 / 12
+                </div>
+
+            </div>
+
+
+            <!-- JOURNEY PROGRESS -->
+
+            <div class="journey-progress">
+
+                <div class="progress-line active"></div>
+                <div class="progress-line"></div>
+                <div class="progress-line"></div>
+                <div class="progress-line"></div>
+                <div class="progress-line"></div>
+
+                <span class="progress-text">
+                    1 of 12
+                </span>
+
+            </div>
+
+
+            <!-- HERO -->
+
+            <section class="hero">
+
+                <small>
+                    👤 YOUR CAREER IDENTITY
+                </small>
+
+                <h2>
+                    Let's build your SkillBridge profile.
+                </h2>
+
+                <p>
+                    Your profile helps us understand your academic
+                    background, career goals and preferred learning
+                    environment. You stay in control of the information
+                    you share.
+                </p>
+
+            </section>
+
+
+            <!-- FORM -->
+
+            <form id="profileForm">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h3>
+                            Personal Information
+                        </h3>
+
+                        <p>
+                            Basic information for your SkillBridge profile.
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="input-group">
+
+                            <label>
+                                Full Name <span class="required">*</span>
+                            </label>
+
+                            <input type="text" id="name" placeholder="Enter your full name" required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Country <span class="required">*</span>
+                            </label>
+
+                            <select id="country" required>
+
+                                <option value="">
+                                    Select country
+                                </option>
+
+                                <option value="India">
+                                    🇮🇳 India
+                                </option>
+
+                                <option value="USA">
+                                    🇺🇸 United States
+                                </option>
+
+                                <option value="UK">
+                                    🇬🇧 United Kingdom
+                                </option>
+
+                                <option value="Canada">
+                                    🇨🇦 Canada
+                                </option>
+
+                                <option value="Australia">
+                                    🇦🇺 Australia
+                                </option>
+
+                                <option value="Germany">
+                                    🇩🇪 Germany
+                                </option>
+
+                                <option value="Other">
+                                    🌍 Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Preferred Language
+                            </label>
+
+                            <select id="language">
+
+                                <option value="">
+                                    Select language
+                                </option>
+
+                                <option value="English">
+                                    English
+                                </option>
+
+                                <option value="Hindi">
+                                    हिन्दी
+                                </option>
+
+                                <option value="English + Hindi">
+                                    English + Hindi
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                College / University
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="text" id="college" placeholder="Enter college or university" required>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACADEMIC -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h3>
+                            🎓 Academic Background
+                        </h3>
+
+                        <p>
+                            Help us understand your current education.
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="input-group">
+
+                            <label>
+                                Degree
+                            </label>
+
+                            <select id="degree">
+
+                                <option value="B.Tech">
+                                    B.Tech
+                                </option>
+
+                                <option value="B.E.">
+                                    B.E.
+                                </option>
+
+                                <option value="B.Sc">
+                                    B.Sc
+                                </option>
+
+                                <option value="BCA">
+                                    BCA
+                                </option>
+
+                                <option value="M.Tech">
+                                    M.Tech
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Branch / Specialization
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="text" id="branch" placeholder="e.g. Computer Science & Engineering" required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Current Year
+                            </label>
+
+                            <select id="year">
+
+                                <option value="1st Year">
+                                    1st Year
+                                </option>
+
+                                <option value="2nd Year">
+                                    2nd Year
+                                </option>
+
+                                <option value="3rd Year">
+                                    3rd Year
+                                </option>
+
+                                <option value="4th Year">
+                                    4th Year
+                                </option>
+
+                                <option value="Postgraduate">
+                                    Postgraduate
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CAREER -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h3>
+                            🚀 Career Direction
+                        </h3>
+
+                        <p>
+                            This is your starting preference — not a permanent label.
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="input-group">
+
+                            <label>
+                                Current Career Goal
+                            </label>
+
+                            <select id="career">
+
+                                <option value="">
+                                    Select a direction
+                                </option>
+
+                                <option value="Software Development">
+                                    Software Development
+                                </option>
+
+                                <option value="Data Science & AI">
+                                    Data Science & AI
+                                </option>
+
+                                <option value="Cybersecurity">
+                                    Cybersecurity
+                                </option>
+
+                                <option value="Cloud & DevOps">
+                                    Cloud & DevOps
+                                </option>
+
+                                <option value="Product & Management">
+                                    Product & Management
+                                </option>
+
+                                <option value="Research">
+                                    Research
+                                </option>
+
+                                <option value="Entrepreneurship">
+                                    Entrepreneurship
+                                </option>
+
+                                <option value="Not Sure Yet">
+                                    I'm not sure yet
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+                            💡
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Your choice can change.
+                            </strong>
+
+                            <p>
+                                SkillBridge will combine your stated
+                                preferences with your consented learning,
+                                assessment and project activity to help
+                                you explore possible career directions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONSENT -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h3>
+                            🔐 Personalization & Consent
+                        </h3>
+
+                        <p>
+                            You control how your activity is used.
+                        </p>
+
+                    </div>
+
+
+                    <div class="consent-card">
+
+                        <input type="checkbox" id="consent" required>
+
+                        <label for="consent">
+
+                            <strong>
+                                I agree to personalized guidance.
+                            </strong>
+
+                            <br>
+
+                            I understand that my information and
+                            consented activity may be used to provide
+                            personalized skill, learning and career
+                            recommendations. I can review or change
+                            my preferences later.
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="actions">
+
+                        <button type="button" class="back-btn" onclick="location.href='login.html'">
+
+                            ← Back
+
+                        </button>
+
+
+                        <button type="submit" class="continue-btn">
+
+                            Save Profile & Continue →
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </main>
+
+    </div>
+
+
+    <script src="api-client.js"></script>
+    <script>
+
+        const form =
+            document.getElementById("profileForm");
+
+
+        form.addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+
+            const profile = {
+
+                name:
+                    document.getElementById("name").value.trim(),
+
+                country:
+                    document.getElementById("country").value,
+
+                language:
+                    document.getElementById("language").value,
+
+                college:
+                    document.getElementById("college").value.trim(),
+
+                degree:
+                    document.getElementById("degree").value,
+
+                branch:
+                    document.getElementById("branch").value.trim(),
+
+                year:
+                    document.getElementById("year").value,
+
+                career:
+                    document.getElementById("career").value
+
+            };
+
+
+            /* SAVE PROFILE */
+
+            localStorage.setItem(
+                "skillbridge_profile",
+                JSON.stringify(profile)
+            );
+
+
+            /* SAVE CONSENT */
+
+            localStorage.setItem(
+                "skillbridge_personalization",
+                "true"
+            );
+
+            localStorage.setItem(
+                "skillbridge_activity_tracking",
+                "true"
+            );
+
+            if (SkillBridgeAPI.token) {
+                try {
+                    await SkillBridgeAPI.request("/api/me/profile", {
+                        method: "PUT",
+                        body: JSON.stringify(profile)
+                    });
+                } catch (error) {
+                    alert("Your local profile was saved, but the server copy could not be updated: " + error.message);
+                }
+            }
+
+
+            /* CONTINUE */
+
+            window.location.href =
+                "module2.html";
+
+        });
+
+    </script>
+
+</body>
+
+</html>

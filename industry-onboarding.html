@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge AI | Industry Onboarding</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 30px;
+            color: white;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(60, 190, 255, .14), transparent 30%),
+                radial-gradient(circle at 90% 90%, rgba(130, 80, 255, .16), transparent 30%),
+                #070b18;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .logo span {
+            color: #55d6ff;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 30px;
+            color: #72ddff;
+            background: rgba(85, 214, 255, .1);
+            border: 1px solid rgba(85, 214, 255, .25);
+            font-size: 13px;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            margin: 25px 0 12px;
+        }
+
+        .header p {
+            color: #9ca8c0;
+            line-height: 1.6;
+        }
+
+        .form-card {
+            background: rgba(15, 20, 40, .88);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, .4);
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 19px;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: rgba(85, 214, 255, .1);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            color: #c7d0e2;
+            margin-bottom: 8px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 14px;
+            border-radius: 11px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .045);
+            color: white;
+            outline: none;
+        }
+
+        .input-group select option {
+            background: #11172b;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: #55d6ff;
+            box-shadow: 0 0 0 3px rgba(85, 214, 255, .06);
+        }
+
+        .full {
+            grid-column: 1/-1;
+        }
+
+        .scope {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .scope-card {
+            cursor: pointer;
+            padding: 18px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            transition: .25s;
+        }
+
+        .scope-card:hover {
+            transform: translateY(-2px);
+            border-color: #55d6ff;
+        }
+
+        .scope-card.active {
+            background: rgba(85, 214, 255, .1);
+            border-color: #55d6ff;
+        }
+
+        .scope-card strong {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .scope-card small {
+            color: #8995ad;
+            line-height: 1.5;
+        }
+
+        .hiring {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .hiring label {
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            color: #cbd4e5;
+            font-size: 13px;
+            transition: .2s;
+        }
+
+        .hiring label:hover {
+            border-color: #55d6ff;
+        }
+
+        .hiring input {
+            display: none;
+        }
+
+        .hiring input:checked+span {
+            color: #55d6ff;
+        }
+
+        .consent {
+            display: flex;
+            gap: 12px;
+            padding: 18px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .035);
+            color: #aab5ca;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .consent input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: #55d6ff;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 13px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: .25s;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, .07);
+            color: #c7d0e2;
+        }
+
+        .continue-btn {
+            color: white;
+            background: linear-gradient(90deg, #35c8ff, #7775ff);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            color: #68748c;
+            font-size: 12px;
+            margin-top: 25px;
+        }
+
+        @media(max-width:700px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .grid,
+            .scope {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+
+            <div class="logo">
+                Skill<span>Bridge</span> AI
+            </div>
+
+            <div class="badge">
+                🏢 Industry Workspace
+            </div>
+
+            <h1>Welcome, Industry Partner! 🤝</h1>
+
+            <p>
+                Connect with emerging talent, collaborate with institutes
+                and create meaningful national and international opportunities.
+            </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+            <form id="industryForm">
+
+                <!-- COMPANY INFORMATION -->
+
+                <div class="section">
+
+                    <div class="section-title">
+                        <span>🏢</span>
+                        Company Information
+                    </div>
+
+                    <div class="grid">
+
+                        <div class="input-group">
+                            <label>Company Name *</label>
+
+                            <input id="companyName" type="text" placeholder="Enter company name" required>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Industry Sector *</label>
+
+                            <select id="sector" required>
+
+                                <option value="">
+                                    Select sector
+                                </option>
+
+                                <option>Information Technology</option>
+                                <option>Software & SaaS</option>
+                                <option>Artificial Intelligence</option>
+                                <option>FinTech</option>
+                                <option>Healthcare</option>
+                                <option>Manufacturing</option>
+                                <option>Consulting</option>
+                                <option>Telecommunications</option>
+                                <option>Education</option>
+                                <option>Other</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Company Size</label>
+
+                            <select id="companySize">
+
+                                <option value="">
+                                    Select size
+                                </option>
+
+                                <option>1–50 employees</option>
+                                <option>51–200 employees</option>
+                                <option>201–500 employees</option>
+                                <option>501–1000 employees</option>
+                                <option>1000+ employees</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Country *</label>
+
+                            <input id="country" type="text" placeholder="India" required>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>City *</label>
+
+                            <input id="city" type="text" placeholder="Enter city" required>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Company Website</label>
+
+                            <input id="website" type="url" placeholder="https://example.com">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REPRESENTATIVE -->
+
+                <div class="section">
+
+                    <div class="section-title">
+                        <span>👤</span>
+                        Industry Representative
+                    </div>
+
+                    <div class="grid">
+
+                        <div class="input-group">
+
+                            <label>Representative Name *</label>
+
+                            <input id="representative" type="text" placeholder="Full name" required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>Official Email *</label>
+
+                            <input id="email" type="email" placeholder="recruiter@company.com" required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>Contact Number</label>
+
+                            <input id="phone" type="tel" placeholder="Contact number">
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>Role / Designation</label>
+
+                            <input id="designation" type="text" placeholder="HR / Recruiter / Talent Manager">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HIRING AREAS -->
+
+                <div class="section">
+
+                    <div class="section-title">
+                        <span>💼</span>
+                        Hiring & Collaboration Areas
+                    </div>
+
+                    <div class="hiring">
+
+                        <label>
+                            <input type="checkbox" value="Software Development">
+                            <span>💻 Software Development</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="AI & ML">
+                            <span>🤖 AI & ML</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Data">
+                            <span>📊 Data & Analytics</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Cloud">
+                            <span>☁️ Cloud & DevOps</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Cybersecurity">
+                            <span>🔐 Cybersecurity</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Design">
+                            <span>🎨 UI/UX & Design</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Business">
+                            <span>📈 Business & Management</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Research">
+                            <span>🔬 Research</span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCOPE -->
+
+                <div class="section">
+
+                    <div class="section-title">
+                        <span>🌍</span>
+                        Opportunity Scope
+                    </div>
+
+                    <div class="scope">
+
+                        <div class="scope-card active" onclick="selectScope('National',this)">
+
+                            <strong>🇮🇳 National</strong>
+
+                            <small>
+                                Connect with talent and institutes
+                                across the country.
+                            </small>
+
+                        </div>
+
+
+                        <div class="scope-card" onclick="selectScope('International',this)">
+
+                            <strong>🌍 International</strong>
+
+                            <small>
+                                Create and discover opportunities
+                                across global markets.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONSENT -->
+
+                <div class="section">
+
+                    <div class="consent">
+
+                        <input type="checkbox" id="consent" required>
+
+                        <label for="consent">
+
+                            I confirm that I am authorized to represent
+                            this organization and provide these details.
+                            I understand that SkillBridge AI uses this
+                            information for legitimate recruitment,
+                            collaboration and skill-matching purposes.
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <button type="button" class="back-btn" onclick="window.location.href='login.html'">
+
+                        ← Back to Login
+
+                    </button>
+
+
+                    <button type="submit" class="continue-btn">
+
+                        Create Industry Workspace →
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="footer">
+
+            🛡 Privacy First &nbsp; • &nbsp;
+            🤖 Responsible AI &nbsp; • &nbsp;
+            🌍 National + International
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let selectedScope = "National";
+
+
+        function selectScope(scope, element) {
+
+            selectedScope = scope;
+
+            document
+                .querySelectorAll(".scope-card")
+                .forEach(card => {
+                    card.classList.remove("active");
+                });
+
+            element.classList.add("active");
+        }
+
+
+        document
+            .getElementById("industryForm")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+
+                const hiringAreas = [];
+
+                document
+                    .querySelectorAll(".hiring input:checked")
+                    .forEach(input => {
+
+                        hiringAreas.push(input.value);
+
+                    });
+
+
+                const industryProfile = {
+
+                    companyName:
+                        document.getElementById("companyName").value,
+
+                    sector:
+                        document.getElementById("sector").value,
+
+                    companySize:
+                        document.getElementById("companySize").value,
+
+                    country:
+                        document.getElementById("country").value,
+
+                    city:
+                        document.getElementById("city").value,
+
+                    website:
+                        document.getElementById("website").value,
+
+                    representative:
+                        document.getElementById("representative").value,
+
+                    email:
+                        document.getElementById("email").value,
+
+                    phone:
+                        document.getElementById("phone").value,
+
+                    designation:
+                        document.getElementById("designation").value,
+
+                    hiringAreas:
+                        hiringAreas,
+
+                    scope:
+                        selectedScope
+
+                };
+
+
+                localStorage.setItem(
+                    "skillbridge_industry_profile",
+                    JSON.stringify(industryProfile)
+                );
+
+
+                localStorage.setItem(
+                    "skillbridge_role",
+                    "industry"
+                );
+
+
+                localStorage.setItem(
+                    "skillbridge_industry_onboarding",
+                    "completed"
+                );
+
+
+                alert(
+                    "Industry workspace created successfully! 🏢"
+                );
+
+
+                window.location.href =
+                    "industry-dashboard.html";
+
+            });
+
+    </script>
+
+</body>
+
+</html>

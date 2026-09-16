@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI | Industry Intelligence</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #6c63ff;
+            --primary2: #5148d8;
+            --dark: #111827;
+            --text: #172033;
+            --muted: #7f899b;
+            --line: #e9ebf2;
+            --bg: #f5f7fb;
+            --green: #00a896;
+            --orange: #d97745;
+        }
+
+        body {
+            font-family: Inter, Segoe UI, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 255px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background:
+                radial-gradient(circle at 80% 10%, rgba(108, 99, 255, .2), transparent 25%),
+                #101522;
+            color: white;
+            padding: 25px 16px;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+            padding: 0 13px;
+            margin-bottom: 28px;
+        }
+
+        .logo span {
+            color: #8981ff;
+        }
+
+        .workspace-box {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 15px;
+            padding: 13px;
+            margin-bottom: 22px;
+        }
+
+        .workspace-box small {
+            color: #858da1;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .workspace-box strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .nav-title {
+            color: #747d90;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin: 20px 12px 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin: 4px 0;
+            border-radius: 11px;
+            color: #bbc1cf;
+            text-decoration: none;
+            font-size: 12px;
+            transition: .25s;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: white;
+            background: linear-gradient(90deg,
+                    rgba(108, 99, 255, .28),
+                    rgba(108, 99, 255, .08));
+        }
+
+        .nav-icon {
+            width: 24px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 255px;
+            width: calc(100% - 255px);
+            padding: 28px 32px;
+        }
+
+        /* TOP */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .title-area h1 {
+            font-size: 25px;
+            letter-spacing: -.5px;
+        }
+
+        .title-area p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--line);
+            background: white;
+            border-radius: 13px;
+            font-size: 17px;
+        }
+
+        .company-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            border: 1px solid var(--line);
+            padding: 6px 13px 6px 6px;
+            border-radius: 30px;
+        }
+
+        .avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: white;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6c63ff, #4038a5);
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 210px;
+            border-radius: 25px;
+            padding: 31px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 90% 20%, rgba(255, 255, 255, .13), transparent 23%),
+                linear-gradient(135deg, #151b35, #4038a5);
+            margin-bottom: 20px;
+        }
+
+        .hero:before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .08);
+            right: 60px;
+            bottom: -180px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            color: #c6c2ff;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .hero h2 {
+            font-size: 30px;
+            margin: 10px 0;
+        }
+
+        .hero p {
+            color: #d6d9ef;
+            max-width: 700px;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 19px;
+        }
+
+        .hero-btn {
+            border: none;
+            padding: 11px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .hero-btn.primary {
+            background: white;
+            color: #4d46ca;
+        }
+
+        .hero-btn.secondary {
+            background: rgba(255, 255, 255, .09);
+            border: 1px solid rgba(255, 255, 255, .15);
+            color: white;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            background: white;
+            border: 1px solid #edf0f5;
+            border-radius: 18px;
+            padding: 18px;
+            transition: .25s;
+        }
+
+        .stat:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(24, 39, 75, .08);
+        }
+
+        .stat-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            background: #f0efff;
+            display: grid;
+            place-items: center;
+            font-size: 19px;
+        }
+
+        .stat-change {
+            color: #079178;
+            background: #e9faf5;
+            padding: 5px 7px;
+            border-radius: 12px;
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 25px;
+            margin-top: 15px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        /* CARDS */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1.35fr 1fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #edf0f5;
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 5px 20px rgba(24, 39, 75, .035);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-header h3 {
+            font-size: 16px;
+        }
+
+        .card-header p,
+        .card-header span {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        /* OPPORTUNITY */
+
+        .opportunity {
+            border: 1px solid #edf0f5;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 11px;
+            transition: .2s;
+        }
+
+        .opportunity:hover {
+            border-color: #bdb9ff;
+            transform: translateY(-2px);
+        }
+
+        .opp-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .opp-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .opp-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            background: #f0efff;
+            display: grid;
+            place-items: center;
+        }
+
+        .opp-title strong {
+            font-size: 12px;
+        }
+
+        .opp-title span {
+            display: block;
+            color: var(--muted);
+            font-size: 9px;
+            margin-top: 3px;
+        }
+
+        .status {
+            color: #078b72;
+            background: #e9faf5;
+            padding: 5px 8px;
+            border-radius: 10px;
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .tag {
+            padding: 5px 8px;
+            border-radius: 8px;
+            background: #f6f7fa;
+            color: #697385;
+            font-size: 9px;
+        }
+
+        .opp-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        .opp-bottom span {
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        .view-btn {
+            border: none;
+            background: #f0efff;
+            color: #5d55d8;
+            padding: 7px 10px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        /* MATCH */
+
+        .match {
+            padding: 15px;
+            border: 1px solid #edf0f5;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .match-top {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .match-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: #f0efff;
+            font-size: 18px;
+        }
+
+        .match-name {
+            flex: 1;
+        }
+
+        .match-name strong {
+            display: block;
+            font-size: 12px;
+        }
+
+        .match-name span {
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        .match-score {
+            font-size: 16px;
+            font-weight: 800;
+            color: #625be3;
+        }
+
+        .match-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .match-skills span {
+            background: #f6f7fa;
+            color: #687284;
+            border-radius: 8px;
+            padding: 5px 7px;
+            font-size: 8px;
+        }
+
+        .match-action {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .shortlist {
+            border: none;
+            background: #171d3a;
+            color: white;
+            padding: 7px 11px;
+            border-radius: 8px;
+            font-size: 9px;
+        }
+
+        /* SKILLS */
+
+        .skill {
+            margin-bottom: 15px;
+        }
+
+        .skill-head {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            margin-bottom: 6px;
+        }
+
+        .skill-head span {
+            color: var(--muted);
+        }
+
+        .bar {
+            height: 7px;
+            background: #edf0f5;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #6c63ff, #918aff);
+        }
+
+        /* DEMAND */
+
+        .demand {
+            display: grid;
+            grid-template-columns: 1fr 1fr 60px;
+            gap: 10px;
+            align-items: center;
+            padding: 11px 0;
+            border-bottom: 1px solid #f0f1f5;
+        }
+
+        .demand:last-child {
+            border-bottom: none;
+        }
+
+        .demand strong {
+            font-size: 11px;
+        }
+
+        .demand-bar {
+            height: 6px;
+            background: #edf0f5;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .demand-fill {
+            height: 100%;
+            background: #00a896;
+        }
+
+        .demand span {
+            text-align: right;
+            color: #078f78;
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+        /* INSTITUTE */
+
+        .institute {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #edf0f5;
+            border-radius: 14px;
+            padding: 13px;
+            margin-bottom: 9px;
+        }
+
+        .institute-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .institute-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            background: #f0efff;
+            display: grid;
+            place-items: center;
+        }
+
+        .institute strong {
+            display: block;
+            font-size: 11px;
+        }
+
+        .institute span {
+            display: block;
+            color: var(--muted);
+            font-size: 9px;
+            margin-top: 3px;
+        }
+
+        .connect {
+            border: none;
+            background: #f0efff;
+            color: #5e56d8;
+            padding: 7px 10px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        /* AI */
+
+        .ai {
+            background:
+                radial-gradient(circle at 90% 20%, rgba(108, 99, 255, .25), transparent 30%),
+                linear-gradient(135deg, #171d3a, #30366e);
+            color: white;
+        }
+
+        .ai-label {
+            display: inline-block;
+            padding: 6px 9px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .1);
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .ai h3 {
+            margin-top: 12px;
+            font-size: 17px;
+        }
+
+        .ai p {
+            color: #cbd0e8;
+            font-size: 11px;
+            line-height: 1.65;
+            margin-top: 9px;
+        }
+
+        .ai-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 14px;
+        }
+
+        .ai-point {
+            padding: 7px 9px;
+            background: rgba(255, 255, 255, .08);
+            border-radius: 9px;
+            font-size: 9px;
+        }
+
+        /* FAIRNESS */
+
+        .fair {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .fair-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 14px;
+            background: #e9faf5;
+            display: grid;
+            place-items: center;
+            font-size: 21px;
+        }
+
+        .fair h3 {
+            font-size: 14px;
+        }
+
+        .fair p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.5;
+            margin-top: 5px;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+            color: #9aa2b1;
+            font-size: 9px;
+            padding: 20px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:1100px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media(max-width:800px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 18px;
+            }
+
+        }
+
+        @media(max-width:550px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-btn {
+                width: 100%;
+            }
+
+            .top-actions .notification {
+                display: none;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                Skill<span>Bridge</span> AI
+            </div>
+
+            <div class="workspace-box">
+
+                <small>
+                    Current workspace
+                </small>
+
+                <strong>
+                    🏢 Industry Intelligence
+                </strong>
+
+            </div>
+
+
+            <a class="nav-item active" href="industry-dashboard.html">
+
+                <span class="nav-icon">⌂</span>
+                Overview
+
+            </a>
+
+
+            <div class="nav-title">
+                Talent
+            </div>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">🎯</span>
+                Skill Requirements
+            </a>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">👨‍🎓</span>
+                Candidate Pool
+            </a>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">🤝</span>
+                Skill Matching
+            </a>
+
+
+            <div class="nav-title">
+                Opportunities
+            </div>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">💼</span>
+                Internships
+            </a>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">🚀</span>
+                Jobs
+            </a>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">📝</span>
+                Assessments
+            </a>
+
+
+            <div class="nav-title">
+                Collaboration
+            </div>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">🏫</span>
+                Institute Connect
+            </a>
+
+            <a class="nav-item" href="#">
+                <span class="nav-icon">🌎</span>
+                Global Opportunities
+            </a>
+
+
+            <div class="nav-title">
+                Account
+            </div>
+
+            <a class="nav-item" href="index.html">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </aside>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="main">
+
+
+            <!-- TOPBAR -->
+
+            <div class="topbar">
+
+                <div class="title-area">
+
+                    <h1>
+                        Industry Intelligence
+                    </h1>
+
+                    <p>
+                        Discover skills, connect with talent and create opportunities.
+                    </p>
+
+                </div>
+
+
+                <div class="top-actions">
+
+                    <button class="notification">
+                        🔔
+                    </button>
+
+
+                    <div class="company-profile">
+
+                        <div class="avatar">
+                            C
+                        </div>
+
+                        <div>
+
+                            <strong style="font-size:11px;">
+                                Company Admin
+                            </strong>
+
+                            <div style="font-size:9px;color:#8992a2;">
+                                Industry Workspace
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO -->
+
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <div class="hero-label">
+                        🏢 INDUSTRY • SKILLS • TALENT
+                    </div>
+
+                    <h2>
+                        Find skills. Build teams. Create opportunities.
+                    </h2>
+                    <p id="industryWelcome">
+                        Welcome to your Industry Workspace 🏢
+                    </p>
+
+
+                    <p>
+                        SkillBridge helps organizations define skill requirements,
+                        discover relevant talent, create internships and jobs,
+                        and connect with institutes through transparent,
+                        skill-based matching.
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <button class="hero-btn primary" onclick="window.location.href='opportunity-create.html'">
+
+                            + Create Opportunity
+
+                        </button>
+
+
+                        <button class="hero-btn secondary" onclick="showMessage('Explore Candidates')">
+
+                            Explore Talent →
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- STATS -->
+
+            <section class="stats">
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            💼
+                        </div>
+
+                        <div class="stat-change">
+                            +3
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        12
+                    </strong>
+
+                    <span>
+                        Open Opportunities
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            👨‍🎓
+                        </div>
+
+                        <div class="stat-change">
+                            +18%
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        486
+                    </strong>
+
+                    <span>
+                        Applications
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            🎯
+                        </div>
+
+                        <div class="stat-change">
+                            +12%
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        128
+                    </strong>
+
+                    <span>
+                        Potential Matches
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            🏫
+                        </div>
+
+                        <div class="stat-change">
+                            +5
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        21
+                    </strong>
+
+                    <span>
+                        Institute Connections
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- OPPORTUNITIES + MATCHES -->
+
+            <section class="grid">
+
+
+                <!-- OPPORTUNITIES -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                💼 Active Opportunities
+                            </h3>
+
+                            <p>
+                                Your current internship and job openings
+                            </p>
+
+                        </div>
+
+                        <span>
+                            12 Open
+                        </span>
+
+                    </div>
+
+
+                    <div class="opportunity">
+
+                        <div class="opp-top">
+
+                            <div class="opp-title">
+
+                                <div class="opp-icon">
+                                    💻
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Software Developer Intern
+                                    </strong>
+
+                                    <span>
+                                        Internship • Hybrid
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="status">
+                                ACTIVE
+                            </div>
+
+                        </div>
+
+
+                        <div class="tags">
+
+                            <span class="tag">Java</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">Problem Solving</span>
+
+                        </div>
+
+
+                        <div class="opp-bottom">
+
+                            <span>
+                                84 applicants
+                            </span>
+
+                            <button class="view-btn" onclick="showMessage('Software Developer Internship')">
+
+                                View
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="opportunity">
+
+                        <div class="opp-top">
+
+                            <div class="opp-title">
+
+                                <div class="opp-icon">
+                                    🤖
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        AI / ML Project Intern
+                                    </strong>
+
+                                    <span>
+                                        Internship • Remote
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="status">
+                                ACTIVE
+                            </div>
+
+                        </div>
+
+
+                        <div class="tags">
+
+                            <span class="tag">Python</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Data</span>
+
+                        </div>
+
+
+                        <div class="opp-bottom">
+
+                            <span>
+                                61 applicants
+                            </span>
+
+                            <button class="view-btn" onclick="showMessage('AI/ML Internship')">
+
+                                View
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="opportunity">
+
+                        <div class="opp-top">
+
+                            <div class="opp-title">
+
+                                <div class="opp-icon">
+                                    ☁️
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Cloud Engineering Associate
+                                    </strong>
+
+                                    <span>
+                                        Entry Level • Global
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="status">
+                                ACTIVE
+                            </div>
+
+                        </div>
+
+
+                        <div class="tags">
+
+                            <span class="tag">AWS</span>
+                            <span class="tag">Linux</span>
+                            <span class="tag">Docker</span>
+
+                        </div>
+
+
+                        <div class="opp-bottom">
+
+                            <span>
+                                42 applicants
+                            </span>
+
+                            <button class="view-btn" onclick="showMessage('Cloud Opportunity')">
+
+                                View
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MATCHES -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                🎯 Skill-Based Matches
+                            </h3>
+
+                            <p>
+                                Example candidate matches
+                            </p>
+
+                        </div>
+
+                        <span>
+                            Explainable
+                        </span>
+
+                    </div>
+
+
+                    <div class="match">
+
+                        <div class="match-top">
+
+                            <div class="match-avatar">
+                                👨‍💻
+                            </div>
+
+                            <div class="match-name">
+
+                                <strong>
+                                    Candidate A
+                                </strong>
+
+                                <span>
+                                    Software Development
+                                </span>
+
+                            </div>
+
+                            <div class="match-score">
+                                92%
+                            </div>
+
+                        </div>
+
+
+                        <div class="match-skills">
+
+                            <span>Java ✓</span>
+                            <span>SQL ✓</span>
+                            <span>Git ✓</span>
+                            <span>Projects ✓</span>
+
+                        </div>
+
+
+                        <div class="match-action">
+
+                            <button class="shortlist" onclick="showMessage('Candidate A shortlisted')">
+
+                                Review Match
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="match">
+
+                        <div class="match-top">
+
+                            <div class="match-avatar">
+                                👩‍💻
+                            </div>
+
+                            <div class="match-name">
+
+                                <strong>
+                                    Candidate B
+                                </strong>
+
+                                <span>
+                                    AI & Data
+                                </span>
+
+                            </div>
+
+                            <div class="match-score">
+                                86%
+                            </div>
+
+                        </div>
+
+
+                        <div class="match-skills">
+
+                            <span>Python ✓</span>
+                            <span>Data ✓</span>
+                            <span>ML ✓</span>
+                            <span>Projects ✓</span>
+
+                        </div>
+
+
+                        <div class="match-action">
+
+                            <button class="shortlist" onclick="showMessage('Candidate B shortlisted')">
+
+                                Review Match
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="match">
+
+                        <div class="match-top">
+
+                            <div class="match-avatar">
+                                👨‍💻
+                            </div>
+
+                            <div class="match-name">
+
+                                <strong>
+                                    Candidate C
+                                </strong>
+
+                                <span>
+                                    Cloud & DevOps
+                                </span>
+
+                            </div>
+
+                            <div class="match-score">
+                                81%
+                            </div>
+
+                        </div>
+
+
+                        <div class="match-skills">
+
+                            <span>AWS ✓</span>
+                            <span>Linux ✓</span>
+                            <span>Docker ✓</span>
+
+                        </div>
+
+
+                        <div class="match-action">
+
+                            <button class="shortlist" onclick="showMessage('Candidate C shortlisted')">
+
+                                Review Match
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SKILL DEMAND + MARKET -->
+
+            <section class="grid">
+
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                📊 Current Skill Demand
+                            </h3>
+
+                            <p>
+                                Example requirements configured by industry
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="demand">
+
+                        <strong>
+                            Python
+                        </strong>
+
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width:92%">
+                            </div>
+                        </div>
+
+                        <span>
+                            HIGH
+                        </span>
+
+                    </div>
+
+
+                    <div class="demand">
+
+                        <strong>
+                            SQL
+                        </strong>
+
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width:86%">
+                            </div>
+                        </div>
+
+                        <span>
+                            HIGH
+                        </span>
+
+                    </div>
+
+
+                    <div class="demand">
+
+                        <strong>
+                            Cloud
+                        </strong>
+
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width:83%">
+                            </div>
+                        </div>
+
+                        <span>
+                            HIGH
+                        </span>
+
+                    </div>
+
+
+                    <div class="demand">
+
+                        <strong>
+                            Java
+                        </strong>
+
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width:77%">
+                            </div>
+                        </div>
+
+                        <span>
+                            HIGH
+                        </span>
+
+                    </div>
+
+
+                    <div class="demand">
+
+                        <strong>
+                            Cybersecurity
+                        </strong>
+
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width:64%">
+                            </div>
+                        </div>
+
+                        <span>
+                            MEDIUM
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GLOBAL -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                🌎 Opportunity Reach
+                            </h3>
+
+                            <p>
+                                National and international ecosystem
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-head">
+                            <strong>🇮🇳 National Opportunities</strong>
+                            <span>72%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="fill" style="width:72%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-head">
+                            <strong>🌎 International Opportunities</strong>
+                            <span>38%</span>
+                        </div>
+
+                        <div class="bar">
+                            <div class="fill" style="width:38%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div style="
+            margin-top:17px;
+            padding:13px;
+            border-radius:13px;
+            background:#f7f7ff;
+            color:#747e90;
+            font-size:10px;
+            line-height:1.6;
+        ">
+
+                        Global opportunities can include location,
+                        remote-work model, eligibility, language and
+                        time-zone requirements.
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- INSTITUTE CONNECTION -->
+
+            <section class="card" style="margin-bottom:18px">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            🏫 Institute Collaboration
+                        </h3>
+
+                        <p>
+                            Connect with academic institutions
+                        </p>
+
+                    </div>
+
+                    <span>
+                        Partner Network
+                    </span>
+
+                </div>
+
+
+                <div class="institute">
+
+                    <div class="institute-left">
+
+                        <div class="institute-icon">
+                            🏫
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Partner Institute A
+                            </strong>
+
+                            <span>
+                                420 relevant students • CSE
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <button class="connect" onclick="showMessage('Institute connection')">
+
+                        Connect
+
+                    </button>
+
+                </div>
+
+
+                <div class="institute">
+
+                    <div class="institute-left">
+
+                        <div class="institute-icon">
+                            🎓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Partner University B
+                            </strong>
+
+                            <span>
+                                680 relevant students • Engineering
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <button class="connect" onclick="showMessage('University connection')">
+
+                        Connect
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- AI + FAIRNESS -->
+
+            <section class="grid">
+
+
+                <div class="card ai">
+
+                    <span class="ai-label">
+                        🤖 RESPONSIBLE AI
+                    </span>
+
+                    <h3>
+                        Explainable Talent Matching
+                    </h3>
+
+                    <p>
+                        SkillBridge matches opportunities using configured
+                        skill requirements and demonstrated evidence such
+                        as assessments, projects and learning outcomes.
+                        The match should support human review rather than
+                        automatically decide who gets hired.
+                    </p>
+
+
+                    <div class="ai-points">
+
+                        <span class="ai-point">
+                            🎯 Skill overlap
+                        </span>
+
+                        <span class="ai-point">
+                            💻 Project evidence
+                        </span>
+
+                        <span class="ai-point">
+                            📝 Assessment
+                        </span>
+
+                        <span class="ai-point">
+                            🔍 Explainable
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="fair">
+
+                        <div class="fair-icon">
+                            ⚖️
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Fair Hiring Support
+                            </h3>
+
+                            <p>
+                                Matching should focus on relevant skills
+                                and evidence. Protected or unrelated
+                                personal characteristics should not be
+                                used as hidden ranking factors.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <div class="footer">
+
+                SkillBridge AI • Industry Workspace •
+                Skill-based • Explainable • Privacy-conscious
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <script>
+
+        function showMessage(message) {
+
+            alert(
+                message +
+                "\n\nThis feature will be connected to the Industry workspace in the next development stage."
+            );
+
+        }
+        if (industryData) {
+
+            const industry =
+                JSON.parse(industryData);
+
+            const scopeElement =
+                document.getElementById("opportunityScope");
+
+            if (scopeElement && industry.scope) {
+
+                scopeElement.textContent =
+                    "Opportunity scope: " +
+                    industry.scope;
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

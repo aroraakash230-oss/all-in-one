@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI - Skill Assessment</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            🎓 SkillBridge AI
+        </div>
+
+        <div class="module">
+            Module 4 of 12
+        </div>
+
+    </header>
+
+
+    <main class="profile-container">
+
+        <div class="page-heading">
+
+            <span class="badge">
+                📝 Skill Assessment
+            </span>
+
+            <h1>Measure Your Current Skills</h1>
+
+            <p>
+                Answer a few questions to create an initial skill profile.
+                Your score is a starting point and can improve as you learn.
+            </p>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <section class="progress-card">
+
+            <div class="progress-header">
+
+                <strong>Assessment Progress</strong>
+
+                <span id="questionProgress">
+                    Question 1 of 8
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div id="assessmentProgress">
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- QUESTION -->
+
+        <section class="assessment-card">
+
+            <div class="question-number">
+                Question <span id="currentNumber">1</span>
+            </div>
+
+
+            <h2 id="question">
+                Which programming language are you most comfortable using?
+            </h2>
+
+
+            <div id="answers" class="answers">
+
+
+                <label class="answer">
+
+                    <input type="radio" name="answer" value="4">
+
+                    <span>
+                        I can use it confidently for projects
+                    </span>
+
+                </label>
+
+
+                <label class="answer">
+
+                    <input type="radio" name="answer" value="3">
+
+                    <span>
+                        I understand the basics and can solve simple problems
+                    </span>
+
+                </label>
+
+
+                <label class="answer">
+
+                    <input type="radio" name="answer" value="2">
+
+                    <span>
+                        I have started learning it
+                    </span>
+
+                </label>
+
+
+                <label class="answer">
+
+                    <input type="radio" name="answer" value="1">
+
+                    <span>
+                        I have little or no experience
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <button type="button" class="continue-btn" onclick="nextQuestion()">
+
+                Next Question →
+
+            </button>
+
+        </section>
+
+
+
+        <!-- ASSESSMENT INFORMATION -->
+
+        <section class="form-section">
+
+            <h2>🧠 How Your Assessment Works</h2>
+
+            <div class="info-grid">
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        📊
+                    </div>
+
+                    <strong>Skill Level</strong>
+
+                    <p>
+                        Your answers create an initial estimate of
+                        your current skill level.
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        🔄
+                    </div>
+
+                    <strong>Can Improve</strong>
+
+                    <p>
+                        Your score can change as you complete courses,
+                        projects and future assessments.
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        ⚖️
+                    </div>
+
+                    <strong>Not a Final Judgment</strong>
+
+                    <p>
+                        This assessment is a guidance tool and does
+                        not permanently label your ability.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <script>
+
+
+        /* =========================
+           QUESTIONS
+        ========================= */
+
+        const questions = [
+
+            {
+                question:
+                    "Which programming language are you most comfortable using?",
+
+                answers: [
+
+                    "I can use it confidently for projects",
+
+                    "I understand the basics and can solve simple problems",
+
+                    "I have started learning it",
+
+                    "I have little or no experience"
+
+                ]
+
+            },
+
+
+            {
+                question:
+                    "How comfortable are you with solving programming problems?",
+
+                answers: [
+
+                    "I regularly solve programming problems",
+
+                    "I can solve basic problems",
+
+                    "I can solve problems with guidance",
+
+                    "I am still learning problem solving"
+
+                ]
+
+            },
+
+
+            {
+                question:
+                    "How comfortable are you with HTML and CSS?",
+
+                answers: [
+
+                    "I can build complete responsive pages",
+
+                    "I can create basic webpages",
+
+                    "I know some fundamentals",
+
+                    "I have not learned them yet"
+
+                ]
+
+            },
+
+
+            {
+                question:
+                    "How comfortable are you with databases and SQL?",
+
+                answers: [
+
+                    "I can design and query databases",
+
+                    "I can write basic SQL queries",
+
+                    "I understand database fundamentals",
+
+                    "I have little or no experience"
+
+                ]
+
+            },
+
+
+            {
+                question:
+                    "How comfortable are you with Git and GitHub?",
+
+                answers: [
+
+                    "I use Git/GitHub regularly in projects",
+
+                    "I can use common Git commands",
+
+                    "I have used GitHub with guidance",
+
+                    "I have not used Git yet"
+
+                ]
+
+            },
+
+
+            {
+                question:
+                    "How comfortable are you with building projects?",
+
+                answers: [
+
+                    "I can independently build projects",
+
+                    "I can build projects with some guidance",
+
+                    "I have completed small practice projects",
+
+                    "I have not built a project yet"
+
+                ]
+
+            },
+
+
+            {
+                question:
+                    "How comfortable are you with debugging code?",
+
+                answers: [
+
+                    "I can independently find and fix bugs",
+
+                    "I can debug common problems",
+
+                    "I can debug with guidance",
+
+                    "I am still learning debugging"
+
+                ]
+
+            },
+
+
+            {
+                question:
+                    "How confident are you in learning a new technology?",
+
+                answers: [
+
+                    "I can independently learn new technologies",
+
+                    "I can learn with documentation and examples",
+
+                    "I usually need some guidance",
+
+                    "I am still developing this skill"
+
+                ]
+
+            }
+
+        ];
+
+
+        let currentQuestion = 0;
+
+        let totalScore = 0;
+
+
+
+        /* =========================
+           LOAD QUESTION
+        ========================= */
+
+        function loadQuestion() {
+
+            const data =
+                questions[currentQuestion];
+
+
+            document.getElementById(
+                "question"
+            ).textContent =
+                data.question;
+
+
+            document.getElementById(
+                "currentNumber"
+            ).textContent =
+                currentQuestion + 1;
+
+
+            document.getElementById(
+                "questionProgress"
+            ).textContent =
+                "Question " +
+                (currentQuestion + 1) +
+                " of " +
+                questions.length;
+
+
+            const progress =
+                ((currentQuestion) /
+                    questions.length) * 100;
+
+
+            document.getElementById(
+                "assessmentProgress"
+            ).style.width =
+                progress + "%";
+
+
+            const answers =
+                document.getElementById(
+                    "answers"
+                );
+
+
+            answers.innerHTML = "";
+
+
+            data.answers.forEach(
+                function (answer, index) {
+
+                    const label =
+                        document.createElement("label");
+
+
+                    label.className =
+                        "answer";
+
+
+                    label.innerHTML = `
+
+                <input
+                    type="radio"
+                    name="answer"
+                    value="${4 - index}">
+
+                <span>
+                    ${answer}
+                </span>
+
+            `;
+
+
+                    answers.appendChild(label);
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================
+           NEXT QUESTION
+        ========================= */
+
+        function nextQuestion() {
+
+
+            const selected =
+                document.querySelector(
+                    'input[name="answer"]:checked'
+                );
+
+
+            if (!selected) {
+
+                alert(
+                    "Please select an answer before continuing."
+                );
+
+                return;
+
+            }
+
+
+            totalScore +=
+                Number(selected.value);
+
+
+            currentQuestion++;
+
+
+            if (
+                currentQuestion <
+                questions.length
+            ) {
+
+                loadQuestion();
+
+            }
+
+            else {
+
+                finishAssessment();
+
+            }
+
+        }
+
+
+
+        /* =========================
+           FINISH
+        ========================= */
+
+        function finishAssessment() {
+
+
+            const maxScore =
+                questions.length * 4;
+
+
+            const percentage =
+                Math.round(
+                    (totalScore / maxScore) * 100
+                );
+
+
+            localStorage.setItem(
+                "skillbridge_skill_score",
+                percentage
+            );
+
+
+            localStorage.setItem(
+                "skillbridge_assessment_completed",
+                "true"
+            );
+
+
+            alert(
+                "Assessment completed! Your initial skill score is " +
+                percentage +
+                "%."
+            );
+
+
+            window.location.href =
+                "module5.html";
+
+        }
+
+
+        loadQuestion();
+
+    </script>
+
+
+</body>
+
+</html>

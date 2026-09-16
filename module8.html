@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI - Projects & Practice</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">🎓 SkillBridge AI</div>
+        <div class="module">Module 8 of 12</div>
+    </header>
+
+    <main class="profile-container">
+
+        <div class="page-heading">
+
+            <span class="badge">💻 Projects & Practice</span>
+
+            <h1>Learn by Building</h1>
+
+            <p>
+                Apply your skills through practical projects, challenges
+                and hackathon-style activities.
+            </p>
+
+        </div>
+
+
+        <!-- Project Recommendation -->
+
+        <section class="project-highlight">
+
+            <div class="project-highlight-icon">🚀</div>
+
+            <div>
+                <span class="project-label">RECOMMENDED PROJECT</span>
+
+                <h2>Build a Student Skill Portfolio</h2>
+
+                <p>
+                    Create a website that showcases your skills, projects,
+                    certifications and career interests.
+                </p>
+
+                <div class="project-tags">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>GitHub</span>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Projects -->
+
+        <section class="form-section">
+
+            <h2>🛠️ Practice Projects</h2>
+
+            <p class="section-description">
+                Choose projects according to your current experience level.
+            </p>
+
+
+            <div class="project-grid">
+
+                <div class="project-card">
+
+                    <div class="project-icon">🌐</div>
+
+                    <span class="project-level">BEGINNER</span>
+
+                    <h3>Personal Portfolio</h3>
+
+                    <p>
+                        Build a responsive portfolio website with your
+                        introduction, skills and projects.
+                    </p>
+
+                    <div class="project-tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                    </div>
+
+                    <button class="course-btn" onclick="startProject('Personal Portfolio')">
+                        Start Project →
+                    </button>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <div class="project-icon">📝</div>
+
+                    <span class="project-level">BEGINNER</span>
+
+                    <h3>Smart To-Do App</h3>
+
+                    <p>
+                        Create a task management application using
+                        JavaScript and browser storage.
+                    </p>
+
+                    <div class="project-tags">
+                        <span>JavaScript</span>
+                        <span>LocalStorage</span>
+                    </div>
+
+                    <button class="course-btn" onclick="startProject('Smart To-Do App')">
+                        Start Project →
+                    </button>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <div class="project-icon">🎓</div>
+
+                    <span class="project-level">INTERMEDIATE</span>
+
+                    <h3>College Skill Mapper</h3>
+
+                    <p>
+                        Build a platform that maps student skills with
+                        academic and industry requirements.
+                    </p>
+
+                    <div class="project-tags">
+                        <span>JavaScript</span>
+                        <span>Database</span>
+                    </div>
+
+                    <button class="course-btn" onclick="startProject('College Skill Mapper')">
+                        Start Project →
+                    </button>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <div class="project-icon">🏆</div>
+
+                    <span class="project-level">ADVANCED</span>
+
+                    <h3>Hackathon Challenge</h3>
+
+                    <p>
+                        Solve a real-world problem and develop a working
+                        prototype for a hackathon.
+                    </p>
+
+                    <div class="project-tags">
+                        <span>Teamwork</span>
+                        <span>Innovation</span>
+                    </div>
+
+                    <button class="course-btn" onclick="startProject('Hackathon Challenge')">
+                        Start Project →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Practice -->
+
+        <section class="form-section">
+
+            <h2>🎯 Practice Challenges</h2>
+
+            <div class="challenge-grid">
+
+                <div class="challenge-card">
+
+                    <strong>💡 Daily Coding Challenge</strong>
+
+                    <p>
+                        Solve one programming problem and improve
+                        your problem-solving skills.
+                    </p>
+
+                    <button onclick="completeChallenge('Coding')">
+                        Try Challenge
+                    </button>
+
+                </div>
+
+
+                <div class="challenge-card">
+
+                    <strong>🔍 Debugging Challenge</strong>
+
+                    <p>
+                        Find and fix errors in a small piece of code.
+                    </p>
+
+                    <button onclick="completeChallenge('Debugging')">
+                        Try Challenge
+                    </button>
+
+                </div>
+
+
+                <div class="challenge-card">
+
+                    <strong>🌐 UI Challenge</strong>
+
+                    <p>
+                        Create a simple responsive interface from a
+                        given design requirement.
+                    </p>
+
+                    <button onclick="completeChallenge('UI')">
+                        Try Challenge
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Project Progress -->
+
+        <section class="progress-card">
+
+            <div>
+                <h3>📈 Your Project Progress</h3>
+
+                <p>
+                    Projects and challenges completed:
+                </p>
+            </div>
+
+            <div class="project-count">
+                <span id="projectCount">0</span>
+                <small>Projects</small>
+            </div>
+
+            <div class="project-xp">
+                <span id="projectXP">0 XP</span>
+            </div>
+
+        </section>
+
+
+        <!-- Ethical Project Design -->
+
+        <section class="accessibility-card">
+
+            <div class="accessibility-icon">⚖️</div>
+
+            <div>
+
+                <h2>Responsible Project Building</h2>
+
+                <p>
+                    Projects should respect privacy, accessibility,
+                    security and responsible use of technology.
+                    SkillBridge AI encourages students to consider
+                    the social and ethical impact of their solutions.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <button class="continue-btn" onclick="goToModule9()">
+            Continue to Internship & Job Matching →
+        </button>
+
+    </main>
+
+
+    <script>
+
+        let projectCount =
+            Number(localStorage.getItem("skillbridge_project_count")) || 0;
+
+        let projectXP =
+            Number(localStorage.getItem("skillbridge_project_xp")) || 0;
+
+
+        document.getElementById("projectCount").textContent =
+            projectCount;
+
+        document.getElementById("projectXP").textContent =
+            projectXP + " XP";
+
+
+        function startProject(projectName) {
+
+            projectCount++;
+            projectXP += 100;
+
+            localStorage.setItem(
+                "skillbridge_project_count",
+                projectCount
+            );
+
+            localStorage.setItem(
+                "skillbridge_project_xp",
+                projectXP
+            );
+
+            document.getElementById("projectCount").textContent =
+                projectCount;
+
+            document.getElementById("projectXP").textContent =
+                projectXP + " XP";
+
+            alert(
+                "Project started: " +
+                projectName +
+                "\n\nYou earned 100 XP!"
+            );
+
+        }
+
+
+        function completeChallenge(challengeName) {
+
+            projectXP += 25;
+
+            localStorage.setItem(
+                "skillbridge_project_xp",
+                projectXP
+            );
+
+            document.getElementById("projectXP").textContent =
+                projectXP + " XP";
+
+            alert(
+                challengeName +
+                " challenge completed!\n\nYou earned 25 XP!"
+            );
+
+        }
+
+
+        function goToModule9() {
+
+            window.location.href = "module9.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

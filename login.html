@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge AI | Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(0, 180, 255, .15), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(150, 70, 255, .18), transparent 30%),
+                #070b18;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 1100px;
+            max-width: 100%;
+            min-height: 650px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: rgba(15, 20, 40, .88);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
+        }
+
+        /* LEFT SIDE */
+
+        .welcome {
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(145deg,
+                    rgba(20, 35, 70, .95),
+                    rgba(10, 15, 35, .95));
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 35px;
+        }
+
+        .logo span {
+            color: #55d6ff;
+        }
+
+        .badge {
+            display: inline-block;
+            width: fit-content;
+            padding: 8px 15px;
+            border-radius: 30px;
+            background: rgba(85, 214, 255, .12);
+            border: 1px solid rgba(85, 214, 255, .3);
+            color: #7ddfff;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 42px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .welcome h1 span {
+            color: #55d6ff;
+        }
+
+        .welcome p {
+            color: #aab4cc;
+            line-height: 1.7;
+            font-size: 16px;
+            max-width: 470px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 35px;
+        }
+
+        .feature {
+            padding: 16px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .045);
+            border: 1px solid rgba(255, 255, 255, .07);
+            color: #dce5f5;
+            font-size: 14px;
+        }
+
+        /* RIGHT SIDE */
+
+        .login-area {
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-area h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #8994ad;
+            margin-bottom: 25px;
+        }
+
+        /* ROLE SELECTOR */
+
+        .roles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .role {
+            cursor: pointer;
+            padding: 15px 8px;
+            text-align: center;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            transition: .25s;
+        }
+
+        .role:hover {
+            transform: translateY(-2px);
+            border-color: #55d6ff;
+        }
+
+        .role.active {
+            background: rgba(85, 214, 255, .12);
+            border-color: #55d6ff;
+            box-shadow: 0 0 20px rgba(85, 214, 255, .08);
+        }
+
+        .role-icon {
+            font-size: 27px;
+            margin-bottom: 7px;
+        }
+
+        .role-name {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* PERSONAL WELCOME */
+
+        .role-welcome {
+            padding: 17px;
+            border-radius: 16px;
+            background: linear-gradient(135deg,
+                    rgba(85, 214, 255, .10),
+                    rgba(140, 90, 255, .08));
+            border: 1px solid rgba(85, 214, 255, .15);
+            margin-bottom: 22px;
+        }
+
+        .role-welcome h3 {
+            font-size: 18px;
+            margin-bottom: 7px;
+        }
+
+        .role-welcome p {
+            color: #9da9c1;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* FORM */
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #c7d0e3;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .045);
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .input-group input:focus {
+            border-color: #55d6ff;
+            box-shadow: 0 0 0 3px rgba(85, 214, 255, .08);
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #7f8ba5;
+            font-size: 13px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 13px;
+            background: linear-gradient(90deg, #35c8ff, #7775ff);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .25s;
+            margin-top: 5px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(60, 170, 255, .25);
+        }
+
+        .signup {
+            text-align: center;
+            margin-top: 20px;
+            color: #8994ad;
+            font-size: 14px;
+        }
+
+        .signup span {
+            color: #55d6ff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .security {
+            text-align: center;
+            margin-top: 25px;
+            color: #69758e;
+            font-size: 12px;
+        }
+
+        @media(max-width: 850px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome {
+                padding: 35px;
+            }
+
+            .welcome h1 {
+                font-size: 32px;
+            }
+
+            .login-area {
+                padding: 35px;
+            }
+        }
+
+        @media(max-width: 450px) {
+            body {
+                padding: 10px;
+            }
+
+            .roles {
+                gap: 5px;
+            }
+
+            .role {
+                padding: 12px 5px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- LEFT -->
+
+        <section class="welcome">
+
+            <div class="logo">
+                Skill<span>Bridge</span> AI
+            </div>
+
+            <div class="badge">
+                SIH26044 • Academia × Industry
+            </div>
+
+            <h1>
+                One platform.<br>
+                <span>Three connected worlds.</span>
+            </h1>
+
+            <p>
+                SkillBridge AI connects students, institutes and industry
+                through skill mapping, learning, projects and meaningful
+                opportunities — with responsible AI and privacy at the core.
+            </p>
+
+            <div class="features">
+
+                <div class="feature">
+                    👨‍🎓 Student Growth
+                </div>
+
+                <div class="feature">
+                    🏫 Institute Intelligence
+                </div>
+
+                <div class="feature">
+                    🏢 Industry Opportunities
+                </div>
+
+                <div class="feature">
+                    🌍 National + International
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT -->
+
+        <section class="login-area">
+
+            <h2>Welcome to SkillBridge 👋</h2>
+
+            <div class="subtitle">
+                Choose your workspace to continue.
+            </div>
+
+
+            <!-- ROLES -->
+
+            <div class="roles">
+
+                <div class="role active" onclick="selectRole('student', this)">
+
+                    <div class="role-icon">👨‍🎓</div>
+                    <div class="role-name">Student</div>
+
+                </div>
+
+
+                <div class="role" onclick="selectRole('institute', this)">
+
+                    <div class="role-icon">🏫</div>
+                    <div class="role-name">Institute</div>
+
+                </div>
+
+
+                <div class="role" onclick="selectRole('industry', this)">
+
+                    <div class="role-icon">🏢</div>
+                    <div class="role-name">Industry</div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ROLE WELCOME -->
+
+            <div class="role-welcome">
+
+                <h3 id="welcomeTitle">
+                    Welcome, Student! 👋
+                </h3>
+
+                <p id="welcomeMessage">
+                    Your journey to discover your skills, build projects
+                    and find meaningful opportunities starts here.
+                    Let's build your future together. 🚀
+                </p>
+
+            </div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form id="loginForm">
+
+                <div class="input-group">
+
+                    <label>Email Address</label>
+
+                    <input type="email" id="email" placeholder="Enter your email" required>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Password</label>
+
+                    <div class="password-box">
+
+                        <input type="password" id="password" placeholder="Enter your password" required>
+
+                        <span class="show-password" onclick="togglePassword()">
+                            Show
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button class="login-btn" type="submit">
+                    Continue to Workspace →
+                </button>
+
+            </form>
+
+
+            <div class="signup">
+
+                New to SkillBridge?
+                <span onclick="signup()">Create an Account</span>
+
+            </div>
+
+
+            <div class="security">
+                🛡 Privacy-first • 🤖 Explainable AI • 🌍 Global Access
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script src="api-client.js"></script>
+    <script>
+
+        let selectedRole = "student";
+
+
+        function selectRole(role, element) {
+
+            selectedRole = role;
+
+            document.querySelectorAll(".role").forEach(function (item) {
+                item.classList.remove("active");
+            });
+
+            element.classList.add("active");
+
+
+            const title =
+                document.getElementById("welcomeTitle");
+
+            const message =
+                document.getElementById("welcomeMessage");
+
+
+            if (role === "student") {
+
+                title.textContent =
+                    "Welcome, Student! 👋";
+
+                message.textContent =
+                    "Your journey to discover your skills, build projects and find meaningful opportunities starts here. Let's build your future together. 🚀";
+
+            }
+
+
+            else if (role === "institute") {
+
+                title.textContent =
+                    "Welcome, Institute! 🏫";
+
+                message.textContent =
+                    "Empower your students with skill insights, industry connections and career-ready learning. Together, let's build an industry-ready talent ecosystem. 🌱";
+
+            }
+
+
+            else if (role === "industry") {
+
+                title.textContent =
+                    "Welcome, Industry Partner! 🤝";
+
+                message.textContent =
+                    "Discover emerging talent, connect with institutions and create meaningful opportunities. Let's connect skills with real-world opportunities. 🌍";
+
+            }
+
+        }
+
+
+        function togglePassword() {
+
+            const password =
+                document.getElementById("password");
+
+            const button =
+                document.querySelector(".show-password");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+                button.textContent = "Hide";
+
+            } else {
+
+                password.type = "password";
+                button.textContent = "Show";
+
+            }
+
+        }
+
+
+        document
+            .getElementById("loginForm")
+            .addEventListener("submit", async function (event) {
+
+                event.preventDefault();
+
+
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                try {
+                    const session = await SkillBridgeAPI.login({ email, password, role: selectedRole });
+                    if (session.user.profile && Object.keys(session.user.profile).length) {
+                        localStorage.setItem("skillbridge_profile", JSON.stringify(session.user.profile));
+                    }
+                } catch (error) {
+                    alert(error.message + "\n\nUse ‘Create an Account’ if you are new to SkillBridge.");
+                    return;
+                }
+
+
+                if (selectedRole === "student") {
+
+                    const profile = localStorage.getItem("skillbridge_profile");
+
+                    if (profile) {
+
+                        window.location.href =
+                            "dashboard-new.html";
+
+                    } else {
+
+                        window.location.href =
+                            "module1.html";
+
+                    }
+
+                }
+
+
+                else if (selectedRole === "institute") {
+
+                    window.location.href =
+                        "institute-dashboard.html";
+
+                }
+
+
+                else if (selectedRole === "industry") {
+
+                    window.location.href =
+                        "industry-dashboard.html";
+
+                }
+
+            });
+
+
+        async function signup() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (!email || !password) {
+                alert("Enter an email address and password first, then create your account.");
+                return;
+            }
+
+            try {
+                await SkillBridgeAPI.register({ email, password, role: selectedRole });
+            } catch (error) {
+                alert(error.message);
+                return;
+            }
+
+
+            if (selectedRole === "student") {
+
+                window.location.href =
+                    "module1.html";
+
+            }
+
+            else if (selectedRole === "institute") {
+
+                window.location.href =
+                    "institute-onboarding.html";
+
+            }
+
+            else if (selectedRole === "industry") {
+
+                window.location.href =
+                    "industry-onboarding.html";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

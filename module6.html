@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI - Career Roadmap</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">🎓 SkillBridge AI</div>
+        <div class="module">Module 6 of 12</div>
+    </header>
+
+    <main class="profile-container">
+
+        <div class="page-heading">
+
+            <span class="badge">🗺️ Personalized Career Roadmap</span>
+
+            <h1>Your Career Roadmap</h1>
+
+            <p>
+                Follow a step-by-step path from your current skill level
+                toward your selected career direction.
+            </p>
+
+        </div>
+
+
+        <!-- Career Goal -->
+
+        <section class="roadmap-goal">
+
+            <div class="goal-icon">🎯</div>
+
+            <div>
+                <h2>Your Career Direction</h2>
+                <p id="careerDirection">
+                    Based on your Career Explorer choices
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- Roadmap -->
+
+        <section class="form-section">
+
+            <h2>🚀 Your Recommended Journey</h2>
+
+            <div class="roadmap">
+
+                <div class="roadmap-step">
+
+                    <div class="step-number">1</div>
+
+                    <div class="step-content">
+
+                        <span class="step-status">CURRENT</span>
+
+                        <h3>Build Your Foundations</h3>
+
+                        <p>
+                            Strengthen programming fundamentals,
+                            problem solving and basic computer concepts.
+                        </p>
+
+                        <div class="roadmap-skills">
+                            <span>Programming</span>
+                            <span>Problem Solving</span>
+                            <span>Computer Fundamentals</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="roadmap-line"></div>
+
+
+                <div class="roadmap-step">
+
+                    <div class="step-number">2</div>
+
+                    <div class="step-content">
+
+                        <span class="step-status">NEXT</span>
+
+                        <h3>Develop Technical Skills</h3>
+
+                        <p>
+                            Learn technologies related to your chosen
+                            career area and practice them regularly.
+                        </p>
+
+                        <div class="roadmap-skills">
+                            <span>Web / Software</span>
+                            <span>Database</span>
+                            <span>Git & GitHub</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="roadmap-line"></div>
+
+
+                <div class="roadmap-step">
+
+                    <div class="step-number">3</div>
+
+                    <div class="step-content">
+
+                        <span class="step-status">BUILD</span>
+
+                        <h3>Create Real Projects</h3>
+
+                        <p>
+                            Apply your skills by building practical
+                            projects that demonstrate what you can do.
+                        </p>
+
+                        <div class="roadmap-skills">
+                            <span>Mini Projects</span>
+                            <span>Portfolio</span>
+                            <span>Hackathons</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="roadmap-line"></div>
+
+
+                <div class="roadmap-step">
+
+                    <div class="step-number">4</div>
+
+                    <div class="step-content">
+
+                        <span class="step-status">PREPARE</span>
+
+                        <h3>Career Readiness</h3>
+
+                        <p>
+                            Prepare your resume, communication skills,
+                            interviews and professional profile.
+                        </p>
+
+                        <div class="roadmap-skills">
+                            <span>Resume</span>
+                            <span>Interview</span>
+                            <span>Communication</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="roadmap-line"></div>
+
+
+                <div class="roadmap-step">
+
+                    <div class="step-number">5</div>
+
+                    <div class="step-content">
+
+                        <span class="step-status">EXPLORE</span>
+
+                        <h3>Internships & Opportunities</h3>
+
+                        <p>
+                            Discover relevant internships, projects
+                            and career opportunities based on your profile.
+                        </p>
+
+                        <div class="roadmap-skills">
+                            <span>National</span>
+                            <span>International</span>
+                            <span>Industry</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Adaptive Roadmap -->
+
+        <section class="form-section">
+
+            <h2>🔄 Adaptive Roadmap</h2>
+
+            <div class="adaptive-box">
+
+                <div class="adaptive-icon">🤖</div>
+
+                <div>
+
+                    <h3>Your roadmap can change</h3>
+
+                    <p>
+                        SkillBridge AI can update your learning path as
+                        your assessment results, learning activity and
+                        project experience change.
+                    </p>
+
+                    <p>
+                        You remain in control of your career choices.
+                        The system provides recommendations rather than
+                        making decisions for you.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Progress -->
+
+        <section class="progress-card">
+
+            <div>
+
+                <h3>📈 Roadmap Progress</h3>
+
+                <p>
+                    Complete learning activities and projects to
+                    progress through your roadmap.
+                </p>
+
+            </div>
+
+            <div class="roadmap-progress">
+
+                <div id="roadmapProgress"></div>
+
+            </div>
+
+            <strong id="progressText">20%</strong>
+
+        </section>
+
+
+        <button class="continue-btn" onclick="goToModule7()">
+            Continue to Learning Hub →
+        </button>
+
+    </main>
+
+
+    <script>
+
+        // Read career choices from Module 3
+
+        const savedData =
+            localStorage.getItem("skillbridge_career_explorer");
+
+        if (savedData) {
+
+            const data = JSON.parse(savedData);
+
+            let text = "";
+
+            if (data.region === "both") {
+                text = "National & International Opportunities";
+            }
+            else if (data.region === "national") {
+                text = "National Opportunities";
+            }
+            else {
+                text = "International Opportunities";
+            }
+
+            if (data.domains && data.domains.length > 0) {
+                text += " • " + data.domains.join(", ");
+            }
+
+            document.getElementById("careerDirection").textContent = text;
+
+        }
+
+
+        // Show initial roadmap progress
+
+        document.getElementById("roadmapProgress").style.width = "20%";
+
+
+        // Continue
+
+        function goToModule7() {
+
+            window.location.href = "module7.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

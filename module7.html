@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI - Learning Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">🎓 SkillBridge AI</div>
+    <div class="module">Module 7 of 12</div>
+</header>
+
+<main class="profile-container">
+
+    <div class="page-heading">
+
+        <span class="badge">📚 Multilingual Learning Hub</span>
+
+        <h1>Learn the Skills You Need</h1>
+
+        <p>
+            Access structured learning resources based on your
+            career roadmap and skill gaps.
+        </p>
+
+    </div>
+
+
+    <!-- Language -->
+
+    <section class="language-card">
+
+        <div>
+            <h2>🌐 Choose Learning Language</h2>
+
+            <p>
+                Select the language in which you are most comfortable learning.
+            </p>
+        </div>
+
+        <select id="language" onchange="changeLanguage()">
+            <option value="english">English</option>
+            <option value="hindi">हिन्दी</option>
+            <option value="hinglish">Hinglish</option>
+        </select>
+
+    </section>
+
+
+    <!-- Recommended Learning -->
+
+    <section class="form-section">
+
+        <h2>🎯 Recommended Learning Path</h2>
+
+        <p class="section-description">
+            These learning areas are connected to your career roadmap.
+        </p>
+
+
+        <div class="course-grid">
+
+            <div class="course-card">
+
+                <div class="course-icon">💻</div>
+
+                <span class="course-level">BEGINNER</span>
+
+                <h3>Programming Fundamentals</h3>
+
+                <p>
+                    Learn variables, conditions, loops, functions and
+                    basic problem solving.
+                </p>
+
+                <div class="course-info">
+                    <span>📖 12 Lessons</span>
+                    <span>⏱️ 6 Hours</span>
+                </div>
+
+                <button class="course-btn"
+                        onclick="startCourse('Programming Fundamentals')">
+                    Start Learning →
+                </button>
+
+            </div>
+
+
+            <div class="course-card">
+
+                <div class="course-icon">🌐</div>
+
+                <span class="course-level">BEGINNER</span>
+
+                <h3>HTML & CSS</h3>
+
+                <p>
+                    Learn how to create responsive and accessible
+                    websites from scratch.
+                </p>
+
+                <div class="course-info">
+                    <span>📖 10 Lessons</span>
+                    <span>⏱️ 5 Hours</span>
+                </div>
+
+                <button class="course-btn"
+                        onclick="startCourse('HTML & CSS')">
+                    Start Learning →
+                </button>
+
+            </div>
+
+
+            <div class="course-card">
+
+                <div class="course-icon">🗄️</div>
+
+                <span class="course-level">BEGINNER</span>
+
+                <h3>Database & SQL</h3>
+
+                <p>
+                    Understand databases, tables, relationships and
+                    practical SQL queries.
+                </p>
+
+                <div class="course-info">
+                    <span>📖 8 Lessons</span>
+                    <span>⏱️ 4 Hours</span>
+                </div>
+
+                <button class="course-btn"
+                        onclick="startCourse('Database & SQL')">
+                    Start Learning →
+                </button>
+
+            </div>
+
+
+            <div class="course-card">
+
+                <div class="course-icon">🔧</div>
+
+                <span class="course-level">BEGINNER</span>
+
+                <h3>Git & GitHub</h3>
+
+                <p>
+                    Learn version control, repositories, commits,
+                    branches and collaboration.
+                </p>
+
+                <div class="course-info">
+                    <span>📖 7 Lessons</span>
+                    <span>⏱️ 3 Hours</span>
+                </div>
+
+                <button class="course-btn"
+                        onclick="startCourse('Git & GitHub')">
+                    Start Learning →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Learning Progress -->
+
+    <section class="form-section">
+
+        <h2>📈 Your Learning Progress</h2>
+
+        <div class="learning-progress-card">
+
+            <div class="progress-item">
+
+                <div class="progress-title">
+                    <span>Courses Started</span>
+                    <strong id="coursesStarted">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="progress-item">
+
+                <div class="progress-title">
+                    <span>Lessons Completed</span>
+                    <strong>0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="progress-item">
+
+                <div class="progress-title">
+                    <span>Learning XP</span>
+                    <strong id="learningXP">0 XP</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Accessibility -->
+
+    <section class="accessibility-card">
+
+        <div class="accessibility-icon">♿</div>
+
+        <div>
+
+            <h2>Accessible Learning</h2>
+
+            <p>
+                Learning resources should support different languages,
+                devices and accessibility needs. SkillBridge AI is
+                designed to make learning more inclusive.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <button class="continue-btn" onclick="goToModule8()">
+        Continue to Projects & Practice →
+    </button>
+
+</main>
+
+
+<script>
+
+    let coursesStarted =
+        Number(localStorage.getItem("skillbridge_courses_started")) || 0;
+
+    let learningXP =
+        Number(localStorage.getItem("skillbridge_learning_xp")) || 0;
+
+
+    document.getElementById("coursesStarted").textContent =
+        coursesStarted;
+
+    document.getElementById("learningXP").textContent =
+        learningXP + " XP";
+
+
+    function startCourse(courseName) {
+
+        coursesStarted++;
+        learningXP += 50;
+
+        localStorage.setItem(
+            "skillbridge_courses_started",
+            coursesStarted
+        );
+
+        localStorage.setItem(
+            "skillbridge_learning_xp",
+            learningXP
+        );
+
+        document.getElementById("coursesStarted").textContent =
+            coursesStarted;
+
+        document.getElementById("learningXP").textContent =
+            learningXP + " XP";
+
+        alert(
+            "Course started: " +
+            courseName +
+            "\n\nYou earned 50 XP!"
+        );
+
+    }
+
+
+    function changeLanguage() {
+
+        const language =
+            document.getElementById("language").value;
+
+        localStorage.setItem(
+            "skillbridge_learning_language",
+            language
+        );
+
+        if (language === "hindi") {
+
+            alert("Learning language selected: हिन्दी");
+
+        }
+        else if (language === "hinglish") {
+
+            alert("Learning language selected: Hinglish");
+
+        }
+        else {
+
+            alert("Learning language selected: English");
+
+        }
+
+    }
+
+
+    function goToModule8() {
+
+        window.location.href = "module8.html";
+
+    }
+
+</script>
+
+</body>
+</html>

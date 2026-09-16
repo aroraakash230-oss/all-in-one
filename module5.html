@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI - Skill Gap Analysis</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">🎓 SkillBridge AI</div>
+        <div class="module">Module 5 of 12</div>
+    </header>
+
+    <main class="profile-container">
+
+        <div class="page-heading">
+
+            <span class="badge">⚖️ Fair & Explainable Analysis</span>
+
+            <h1>Understand Your Skill Gaps</h1>
+
+            <p>
+                See how your current skills compare with the skills commonly
+                required for your selected career direction.
+            </p>
+
+        </div>
+
+
+        <!-- Overall Score -->
+
+        <section class="score-card">
+
+            <div class="score-circle">
+                <span id="skillScore">0%</span>
+            </div>
+
+            <div class="score-content">
+
+                <h2>Your Current Skill Score</h2>
+
+                <p>
+                    This score is based on your Module 4 assessment.
+                    It is a starting point and can improve through learning,
+                    projects and future assessments.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Skill Gap -->
+
+        <section class="form-section">
+
+            <h2>📊 Skill Gap Analysis</h2>
+
+            <p class="section-description">
+                These areas are shown as learning opportunities based on
+                your current assessment.
+            </p>
+
+
+            <div class="skill-gap-grid">
+
+                <div class="skill-gap-card">
+
+                    <div class="skill-icon">💻</div>
+
+                    <div>
+                        <h3>Programming</h3>
+
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 60%;"></div>
+                        </div>
+
+                        <p>
+                            Strengthen problem solving and programming practice.
+                        </p>
+
+                        <span class="gap-label">Learning Opportunity</span>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-gap-card">
+
+                    <div class="skill-icon">🌐</div>
+
+                    <div>
+                        <h3>Web Development</h3>
+
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 45%;"></div>
+                        </div>
+
+                        <p>
+                            Build more responsive and practical web projects.
+                        </p>
+
+                        <span class="gap-label">Learning Opportunity</span>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-gap-card">
+
+                    <div class="skill-icon">🗄️</div>
+
+                    <div>
+                        <h3>Database & SQL</h3>
+
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 35%;"></div>
+                        </div>
+
+                        <p>
+                            Practice SQL queries and database fundamentals.
+                        </p>
+
+                        <span class="gap-label">Needs Development</span>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-gap-card">
+
+                    <div class="skill-icon">🔧</div>
+
+                    <div>
+                        <h3>Git & GitHub</h3>
+
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 40%;"></div>
+                        </div>
+
+                        <p>
+                            Improve version control and collaborative development.
+                        </p>
+
+                        <span class="gap-label">Needs Development</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Explainability -->
+
+        <section class="form-section">
+
+            <h2>💡 Why Are These Skills Recommended?</h2>
+
+            <div class="explain-box">
+
+                <div class="explain-item">
+                    <strong>1. Your Assessment</strong>
+                    <p>
+                        Your answers in Module 4 help create your initial
+                        skill profile.
+                    </p>
+                </div>
+
+                <div class="explain-item">
+                    <strong>2. Career Direction</strong>
+                    <p>
+                        The system considers the career areas you selected
+                        in the Career Explorer.
+                    </p>
+                </div>
+
+                <div class="explain-item">
+                    <strong>3. Learning Progress</strong>
+                    <p>
+                        Future learning and project activity can update
+                        your skill profile.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Fairness -->
+
+        <section class="fairness-card">
+
+            <div class="fairness-icon">⚖️</div>
+
+            <div>
+
+                <h2>Fairness & Transparency</h2>
+
+                <p>
+                    SkillBridge AI does not permanently label your ability.
+                    Recommendations are based on available learning and
+                    assessment information and are intended only to support
+                    your career decisions.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <button class="continue-btn" onclick="goToModule6()">
+            Continue to Career Roadmap →
+        </button>
+
+    </main>
+
+
+    <script>
+
+        // Get skill score from Module 4
+
+        const savedScore =
+            localStorage.getItem("skillbridge_skill_score");
+
+        if (savedScore) {
+
+            document.getElementById("skillScore").textContent =
+                savedScore + "%";
+
+        } else {
+
+            document.getElementById("skillScore").textContent =
+                "0%";
+
+        }
+
+
+        // Continue to Module 6
+
+        function goToModule6() {
+
+            window.location.href = "module6.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

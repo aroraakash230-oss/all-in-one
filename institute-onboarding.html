@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge AI | Institute Onboarding</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(60, 190, 255, .14), transparent 30%),
+                radial-gradient(circle at 90% 90%, rgba(130, 80, 255, .16), transparent 30%),
+                #070b18;
+            color: white;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .logo span {
+            color: #55d6ff;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(85, 214, 255, .1);
+            border: 1px solid rgba(85, 214, 255, .25);
+            color: #72ddff;
+            font-size: 13px;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            margin: 25px 0 12px;
+        }
+
+        .header p {
+            color: #9ca8c0;
+            line-height: 1.6;
+        }
+
+        .form-card {
+            background: rgba(15, 20, 40, .88);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, .4);
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 19px;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: rgba(85, 214, 255, .1);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            color: #c7d0e2;
+            margin-bottom: 8px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 14px;
+            border-radius: 11px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .045);
+            color: white;
+            outline: none;
+        }
+
+        .input-group select option {
+            background: #11172b;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: #55d6ff;
+        }
+
+        .full {
+            grid-column: 1/-1;
+        }
+
+        .scope {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .scope-card {
+            cursor: pointer;
+            padding: 18px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            transition: .25s;
+        }
+
+        .scope-card:hover {
+            border-color: #55d6ff;
+            transform: translateY(-2px);
+        }
+
+        .scope-card.active {
+            background: rgba(85, 214, 255, .1);
+            border-color: #55d6ff;
+        }
+
+        .scope-card strong {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .scope-card small {
+            color: #8995ad;
+            line-height: 1.5;
+        }
+
+        .consent {
+            display: flex;
+            gap: 12px;
+            padding: 18px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .035);
+            color: #aab5ca;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .consent input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: #55d6ff;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        button {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 13px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, .07);
+            color: #c7d0e2;
+        }
+
+        .continue-btn {
+            background: linear-gradient(90deg, #35c8ff, #7775ff);
+            color: white;
+        }
+
+        .continue-btn:hover,
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            color: #68748c;
+            font-size: 12px;
+            margin-top: 25px;
+        }
+
+        @media(max-width:700px) {
+            body {
+                padding: 15px;
+            }
+
+            .grid,
+            .scope {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+
+            <div class="logo">
+                Skill<span>Bridge</span> AI
+            </div>
+
+            <div class="badge">
+                🏫 Institute Workspace
+            </div>
+
+            <h1>Welcome, Institute! 🌱</h1>
+
+            <p>
+                Build an industry-ready talent ecosystem by connecting
+                student skills, academic programs and industry demand.
+            </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+            <form id="instituteForm">
+
+                <!-- BASIC INFORMATION -->
+
+                <div class="section">
+
+                    <div class="section-title">
+                        <span>🏫</span>
+                        Institute Information
+                    </div>
+
+                    <div class="grid">
+
+                        <div class="input-group">
+                            <label>Institute Name *</label>
+                            <input id="instituteName" type="text" placeholder="Enter institute name" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Institute Type *</label>
+
+                            <select id="instituteType" required>
+                                <option value="">Select type</option>
+                                <option>University</option>
+                                <option>Engineering College</option>
+                                <option>Degree College</option>
+                                <option>Polytechnic</option>
+                                <option>Training Institute</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>University / Affiliation</label>
+                            <input id="affiliation" type="text" placeholder="University or affiliating body">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Country *</label>
+                            <input id="country" type="text" placeholder="India" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>City *</label>
+                            <input id="city" type="text" placeholder="Enter city" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Student Count</label>
+                            <input id="studentCount" type="number" min="0" placeholder="Approximate students">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ADMIN -->
+
+                <div class="section">
+
+                    <div class="section-title">
+                        <span>👤</span>
+                        Administrator Details
+                    </div>
+
+                    <div class="grid">
+
+                        <div class="input-group">
+                            <label>Administrator Name *</label>
+                            <input id="adminName" type="text" placeholder="Full name" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Official Email *</label>
+                            <input id="email" type="email" placeholder="official@institute.edu" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Contact Number</label>
+                            <input id="phone" type="tel" placeholder="Contact number">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Primary Department</label>
+                            <input id="department" type="text" placeholder="CSE, ECE, Mechanical etc.">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCOPE -->
+
+                <div class="section">
+
+                    <div class="section-title">
+                        <span>🌍</span>
+                        Opportunity Scope
+                    </div>
+
+                    <div class="scope">
+
+                        <div class="scope-card active" onclick="selectScope('National',this)">
+
+                            <strong>🇮🇳 National</strong>
+
+                            <small>
+                                Connect students with opportunities
+                                across the country.
+                            </small>
+
+                        </div>
+
+
+                        <div class="scope-card" onclick="selectScope('International',this)">
+
+                            <strong>🌍 International</strong>
+
+                            <small>
+                                Explore global learning and
+                                career opportunities.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONSENT -->
+
+                <div class="section">
+
+                    <div class="consent">
+
+                        <input type="checkbox" id="consent" required>
+
+                        <label for="consent">
+                            I confirm that I am authorized to provide
+                            these institute details. SkillBridge AI will
+                            use the information for institute analytics,
+                            skill development and academia-industry
+                            collaboration. Data should be shared only
+                            for legitimate platform purposes.
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <button type="button" class="back-btn" onclick="window.location.href='login.html'">
+                        ← Back to Login
+                    </button>
+
+                    <button type="submit" class="continue-btn">
+                        Create Institute Workspace →
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="footer">
+            🛡 Privacy First &nbsp; • &nbsp;
+            🤖 Responsible AI &nbsp; • &nbsp;
+            🌍 National + International
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let selectedScope = "National";
+
+
+        function selectScope(scope, element) {
+
+            selectedScope = scope;
+
+            document
+                .querySelectorAll(".scope-card")
+                .forEach(card => {
+                    card.classList.remove("active");
+                });
+
+            element.classList.add("active");
+        }
+
+
+        document
+            .getElementById("instituteForm")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                const instituteProfile = {
+
+                    instituteName:
+                        document.getElementById("instituteName").value,
+
+                    instituteType:
+                        document.getElementById("instituteType").value,
+
+                    affiliation:
+                        document.getElementById("affiliation").value,
+
+                    country:
+                        document.getElementById("country").value,
+
+                    city:
+                        document.getElementById("city").value,
+
+                    studentCount:
+                        document.getElementById("studentCount").value,
+
+                    adminName:
+                        document.getElementById("adminName").value,
+
+                    email:
+                        document.getElementById("email").value,
+
+                    phone:
+                        document.getElementById("phone").value,
+
+                    department:
+                        document.getElementById("department").value,
+
+                    scope:
+                        selectedScope
+                };
+
+
+                localStorage.setItem(
+                    "skillbridge_institute_profile",
+                    JSON.stringify(instituteProfile)
+                );
+
+
+                localStorage.setItem(
+                    "skillbridge_role",
+                    "institute"
+                );
+
+
+                localStorage.setItem(
+                    "skillbridge_institute_onboarding",
+                    "completed"
+                );
+
+
+                alert(
+                    "Institute workspace created successfully! 🏫"
+                );
+
+
+                window.location.href =
+                    "institute-dashboard.html";
+
+            });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI - Opportunity Matching</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">🎓 SkillBridge AI</div>
+        <div class="module">Module 9 of 12</div>
+    </header>
+
+    <main class="profile-container">
+
+        <div class="page-heading">
+
+            <span class="badge">💼 Fair Internship & Job Matching</span>
+
+            <h1>Find Opportunities That Match Your Skills</h1>
+
+            <p>
+                Explore internships and jobs using your skills, career
+                interests and learning progress.
+            </p>
+
+        </div>
+
+
+        <!-- Matching Summary -->
+
+        <section class="match-summary">
+
+            <div class="match-item">
+                <span class="match-icon">🎯</span>
+                <strong id="skillScore">0%</strong>
+                <small>Skill Score</small>
+            </div>
+
+            <div class="match-item">
+                <span class="match-icon">📚</span>
+                <strong id="courses">0</strong>
+                <small>Courses Started</small>
+            </div>
+
+            <div class="match-item">
+                <span class="match-icon">💻</span>
+                <strong id="projects">0</strong>
+                <small>Projects</small>
+            </div>
+
+        </section>
+
+
+        <!-- Filters -->
+
+        <section class="form-section">
+
+            <h2>🔎 Opportunity Preferences</h2>
+
+            <div class="filter-grid">
+
+                <div>
+                    <label>Opportunity Type</label>
+
+                    <select id="opportunityType">
+                        <option value="all">All Opportunities</option>
+                        <option value="internship">Internships</option>
+                        <option value="job">Jobs</option>
+                        <option value="project">Industry Projects</option>
+                    </select>
+                </div>
+
+
+                <div>
+                    <label>Location</label>
+
+                    <select id="location">
+                        <option value="all">Any Location</option>
+                        <option value="national">India</option>
+                        <option value="international">International</option>
+                        <option value="remote">Remote</option>
+                    </select>
+                </div>
+
+
+                <div>
+                    <label>Work Mode</label>
+
+                    <select id="workMode">
+                        <option value="all">Any Mode</option>
+                        <option value="onsite">On-site</option>
+                        <option value="hybrid">Hybrid</option>
+                        <option value="remote">Remote</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Opportunities -->
+
+        <section class="form-section">
+
+            <h2>🌟 Suggested Opportunities</h2>
+
+            <p class="section-description">
+                Matches are presented as recommendations. You can review
+                the requirements before deciding whether to apply.
+            </p>
+
+
+            <div class="opportunity-grid">
+
+
+                <div class="opportunity-card">
+
+                    <div class="opportunity-top">
+
+                        <div class="company-icon">💻</div>
+
+                        <span class="match-badge">Skill Match</span>
+
+                    </div>
+
+                    <h3>Frontend Development Intern</h3>
+
+                    <p class="company-name">Technology Company</p>
+
+                    <div class="opportunity-details">
+                        <span>📍 India</span>
+                        <span>🏠 Hybrid</span>
+                        <span>🎓 Internship</span>
+                    </div>
+
+                    <div class="required-skills">
+                        <strong>Skills:</strong>
+
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <button class="opportunity-btn" onclick="viewOpportunity('Frontend Development Intern')">
+                        View Details →
+                    </button>
+
+                </div>
+
+
+                <div class="opportunity-card">
+
+                    <div class="opportunity-top">
+
+                        <div class="company-icon">🌍</div>
+
+                        <span class="match-badge">Career Match</span>
+
+                    </div>
+
+                    <h3>Software Engineering Intern</h3>
+
+                    <p class="company-name">Global Technology Organization</p>
+
+                    <div class="opportunity-details">
+                        <span>🌍 International</span>
+                        <span>💻 Remote</span>
+                        <span>🎓 Internship</span>
+                    </div>
+
+                    <div class="required-skills">
+                        <strong>Skills:</strong>
+
+                        <span>Programming</span>
+                        <span>Git</span>
+                        <span>Problem Solving</span>
+                    </div>
+
+                    <button class="opportunity-btn" onclick="viewOpportunity('Software Engineering Intern')">
+                        View Details →
+                    </button>
+
+                </div>
+
+
+                <div class="opportunity-card">
+
+                    <div class="opportunity-top">
+
+                        <div class="company-icon">🏢</div>
+
+                        <span class="match-badge">Skill Match</span>
+
+                    </div>
+
+                    <h3>Junior Web Developer</h3>
+
+                    <p class="company-name">Industry Partner</p>
+
+                    <div class="opportunity-details">
+                        <span>📍 India</span>
+                        <span>🏢 On-site</span>
+                        <span>💼 Job</span>
+                    </div>
+
+                    <div class="required-skills">
+                        <strong>Skills:</strong>
+
+                        <span>HTML</span>
+                        <span>JavaScript</span>
+                        <span>SQL</span>
+                    </div>
+
+                    <button class="opportunity-btn" onclick="viewOpportunity('Junior Web Developer')">
+                        View Details →
+                    </button>
+
+                </div>
+
+
+                <div class="opportunity-card">
+
+                    <div class="opportunity-top">
+
+                        <div class="company-icon">🚀</div>
+
+                        <span class="match-badge">Project Match</span>
+
+                    </div>
+
+                    <h3>Industry Innovation Project</h3>
+
+                    <p class="company-name">Industry Partner Network</p>
+
+                    <div class="opportunity-details">
+                        <span>🌐 Global</span>
+                        <span>💻 Remote</span>
+                        <span>🛠️ Project</span>
+                    </div>
+
+                    <div class="required-skills">
+                        <strong>Skills:</strong>
+
+                        <span>Web Development</span>
+                        <span>Teamwork</span>
+                        <span>Innovation</span>
+                    </div>
+
+                    <button class="opportunity-btn" onclick="viewOpportunity('Industry Innovation Project')">
+                        View Details →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Fair Matching -->
+
+        <section class="fairness-card">
+
+            <div class="fairness-icon">⚖️</div>
+
+            <div>
+
+                <h2>Fair & Explainable Matching</h2>
+
+                <p>
+                    SkillBridge AI focuses on relevant skills, learning
+                    activity and stated preferences when generating
+                    recommendations. Factors unrelated to opportunity
+                    requirements should not be used to disadvantage students.
+                </p>
+
+                <p>
+                    A recommendation is not a guarantee of selection.
+                    Students should review the opportunity requirements
+                    and make their own application decisions.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <button class="continue-btn" onclick="goToModule10()">
+            Continue to AI Career Assistant →
+        </button>
+
+    </main>
+
+
+    <script src="api-client.js"></script>
+    <script>
+
+        const skillScore =
+            localStorage.getItem("skillbridge_skill_score") || "0";
+
+        const courses =
+            localStorage.getItem("skillbridge_courses_started") || "0";
+
+        const projects =
+            localStorage.getItem("skillbridge_project_count") || "0";
+
+
+        document.getElementById("skillScore").textContent =
+            skillScore + "%";
+
+        document.getElementById("courses").textContent =
+            courses;
+
+        document.getElementById("projects").textContent =
+            projects;
+
+
+        async function loadLiveOpportunities() {
+            if (!SkillBridgeAPI.token) return;
+            try {
+                const data = await SkillBridgeAPI.request('/api/opportunities');
+                const grid = document.querySelector('.opportunity-grid');
+                grid.innerHTML = data.opportunities.map(opportunity => {
+                    const match = opportunity.match || { percentage: 0, matchedSkills: [], missingSkills: [], explanation: '' };
+                    return `<article class="opportunity-card">
+                        <div class="opportunity-top"><div class="company-icon">💼</div><span class="match-badge">${match.percentage}% match</span></div>
+                        <h3>${opportunity.title}</h3><p class="company-name">${opportunity.company}</p>
+                        <div class="opportunity-details"><span>📍 ${opportunity.location}</span><span>🏠 ${opportunity.workMode}</span><span>🎓 ${opportunity.type}</span></div>
+                        <div class="required-skills"><strong>Skills:</strong>${opportunity.requiredSkills.map(skill => `<span>${skill}</span>`).join('')}</div>
+                        <p class="section-description"><strong>Why this match:</strong> ${match.explanation}</p>
+                        <button class="opportunity-btn" onclick="applyToOpportunity('${opportunity.id}')">Apply now</button>
+                    </article>`;
+                }).join('');
+            } catch (error) { console.warn('Live opportunities could not load:', error.message); }
+        }
+
+        async function applyToOpportunity(id) {
+            if (!SkillBridgeAPI.token) { alert('Sign in through the local SkillBridge server to apply.'); return; }
+            try {
+                await SkillBridgeAPI.request(`/api/opportunities/${id}/apply`, { method: 'POST' });
+                alert('Application submitted. Your profile and match explanation were recorded.');
+            } catch (error) { alert(error.message); }
+        }
+
+        loadLiveOpportunities();
+
+
+        function goToModule10() {
+
+            window.location.href = "module10.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

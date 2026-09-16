@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI - Progress & Privacy</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">🎓 SkillBridge AI</div>
+        <div class="module">Module 11 of 12</div>
+    </header>
+
+    <main class="profile-container">
+
+        <div class="page-heading">
+
+            <span class="badge">🔐 Progress & Privacy Dashboard</span>
+
+            <h1>Your Progress, Your Data</h1>
+
+            <p>
+                Review your learning progress and understand how your
+                information is used inside SkillBridge AI.
+            </p>
+
+        </div>
+
+
+        <!-- Progress Overview -->
+
+        <section class="form-section">
+
+            <h2>📊 Progress Overview</h2>
+
+            <div class="dashboard-grid">
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">🎯</div>
+
+                    <h3 id="skillScore">0%</h3>
+
+                    <p>Skill Score</p>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">📚</div>
+
+                    <h3 id="courses">0</h3>
+
+                    <p>Courses Started</p>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">💻</div>
+
+                    <h3 id="projects">0</h3>
+
+                    <p>Projects Started</p>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">⭐</div>
+
+                    <h3 id="xp">0 XP</h3>
+
+                    <p>Total Learning XP</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Learning Activity -->
+
+        <section class="form-section">
+
+            <h2>📈 Learning Activity</h2>
+
+            <div class="activity-card">
+
+                <div class="activity-row">
+
+                    <span>📚 Learning Hub</span>
+
+                    <strong id="courseActivity">0 courses started</strong>
+
+                </div>
+
+                <div class="activity-row">
+
+                    <span>💻 Projects</span>
+
+                    <strong id="projectActivity">0 projects started</strong>
+
+                </div>
+
+                <div class="activity-row">
+
+                    <span>🏆 XP Earned</span>
+
+                    <strong id="xpActivity">0 XP</strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Privacy -->
+
+        <section class="form-section">
+
+            <h2>🔐 Privacy Controls</h2>
+
+            <p class="section-description">
+                You should be able to understand and control how your
+                activity is used for personalization.
+            </p>
+
+
+            <div class="privacy-card">
+
+                <div class="privacy-row">
+
+                    <div>
+                        <strong>🎯 Personalized Recommendations</strong>
+
+                        <p>
+                            Use my learning activity to improve career
+                            and learning recommendations.
+                        </p>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" id="personalization" checked onchange="savePrivacySetting()">
+
+                        <span class="slider"></span>
+                    </label>
+
+                </div>
+
+
+                <div class="privacy-row">
+
+                    <div>
+                        <strong>📊 Activity-Based Skill Updates</strong>
+
+                        <p>
+                            Allow completed courses and projects to contribute
+                            to future skill-profile updates.
+                        </p>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" id="activityTracking" checked onchange="savePrivacySetting()">
+
+                        <span class="slider"></span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- What Is Used -->
+
+        <section class="form-section">
+
+            <h2>🔎 Information Used for Personalization</h2>
+
+            <div class="data-grid">
+
+                <div class="data-card">
+                    <span>📝</span>
+                    <h3>Assessment</h3>
+                    <p>Your skill assessment results.</p>
+                </div>
+
+                <div class="data-card">
+                    <span>📚</span>
+                    <h3>Learning Activity</h3>
+                    <p>Courses and learning progress.</p>
+                </div>
+
+                <div class="data-card">
+                    <span>💻</span>
+                    <h3>Projects</h3>
+                    <p>Projects and practice activities.</p>
+                </div>
+
+                <div class="data-card">
+                    <span>🎯</span>
+                    <h3>Your Choices</h3>
+                    <p>Career areas and opportunity preferences you select.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- User Control -->
+
+        <section class="control-card">
+
+            <div class="control-icon">🛡️</div>
+
+            <div>
+
+                <h2>You Stay in Control</h2>
+
+                <p>
+                    Your profile should remain changeable. Recommendations
+                    are not permanent labels, and you can review your
+                    personalization preferences.
+                </p>
+
+                <p>
+                    SkillBridge AI should use only information necessary
+                    for the features you choose to use.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <button class="continue-btn" onclick="goToModule12()">
+            Continue to Global Ecosystem →
+        </button>
+
+    </main>
+
+
+    <script>
+
+        // Read saved progress
+
+        const skillScore =
+            localStorage.getItem("skillbridge_skill_score") || "0";
+
+        const courses =
+            localStorage.getItem("skillbridge_courses_started") || "0";
+
+        const projects =
+            localStorage.getItem("skillbridge_project_count") || "0";
+
+        const learningXP =
+            Number(localStorage.getItem("skillbridge_learning_xp")) || 0;
+
+        const projectXP =
+            Number(localStorage.getItem("skillbridge_project_xp")) || 0;
+
+
+        const totalXP =
+            learningXP + projectXP;
+
+
+        // Display progress
+
+        document.getElementById("skillScore").textContent =
+            skillScore + "%";
+
+        document.getElementById("courses").textContent =
+            courses;
+
+        document.getElementById("projects").textContent =
+            projects;
+
+        document.getElementById("xp").textContent =
+            totalXP + " XP";
+
+
+        document.getElementById("courseActivity").textContent =
+            courses + " courses started";
+
+        document.getElementById("projectActivity").textContent =
+            projects + " projects started";
+
+        document.getElementById("xpActivity").textContent =
+            totalXP + " XP";
+
+
+        // Load privacy settings
+
+        const savedPersonalization =
+            localStorage.getItem(
+                "skillbridge_personalization"
+            );
+
+        const savedTracking =
+            localStorage.getItem(
+                "skillbridge_activity_tracking"
+            );
+
+
+        if (savedPersonalization !== null) {
+
+            document.getElementById("personalization").checked =
+                savedPersonalization === "true";
+
+        }
+
+
+        if (savedTracking !== null) {
+
+            document.getElementById("activityTracking").checked =
+                savedTracking === "true";
+
+        }
+
+
+        // Save privacy settings
+
+        function savePrivacySetting() {
+
+            const personalization =
+                document.getElementById("personalization").checked;
+
+            const tracking =
+                document.getElementById("activityTracking").checked;
+
+
+            localStorage.setItem(
+                "skillbridge_personalization",
+                personalization
+            );
+
+            localStorage.setItem(
+                "skillbridge_activity_tracking",
+                tracking
+            );
+
+
+            alert("Privacy preferences saved.");
+
+        }
+
+
+        // Continue
+
+        function goToModule12() {
+
+            window.location.href = "module12.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
