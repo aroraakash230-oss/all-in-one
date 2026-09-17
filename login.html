@@ -471,6 +471,8 @@
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <script src="api-client.js"></script>
     <script>
 
@@ -622,7 +624,11 @@
             }
 
             try {
-                await SkillBridgeAPI.register({ email, password, role: selectedRole });
+                const registration = await SkillBridgeAPI.register({ email, password, role: selectedRole });
+                if (registration.needsEmailConfirmation) {
+                    alert("Account created. Check your email to confirm it, then sign in.");
+                    return;
+                }
             } catch (error) {
                 alert(error.message);
                 return;

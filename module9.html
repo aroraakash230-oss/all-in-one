@@ -300,6 +300,8 @@
     </main>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <script src="api-client.js"></script>
     <script>
 
@@ -343,7 +345,7 @@
         }
 
         async function applyToOpportunity(id) {
-            if (!SkillBridgeAPI.token) { alert('Sign in through the local SkillBridge server to apply.'); return; }
+            if (!SkillBridgeAPI.token) { alert('Sign in to apply.'); return; }
             try {
                 await SkillBridgeAPI.request(`/api/opportunities/${id}/apply`, { method: 'POST' });
                 alert('Application submitted. Your profile and match explanation were recorded.');

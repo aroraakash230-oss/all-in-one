@@ -457,6 +457,9 @@
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="api-client.js"></script>
     <script>
 
         let selectedScope = "National";
@@ -478,7 +481,7 @@
 
         document
             .getElementById("instituteForm")
-            .addEventListener("submit", function (event) {
+            .addEventListener("submit", async function (event) {
 
                 event.preventDefault();
 
@@ -535,6 +538,16 @@
                     "skillbridge_institute_onboarding",
                     "completed"
                 );
+
+                try {
+                    await SkillBridgeAPI.request("/api/me/profile", {
+                        method: "PUT",
+                        body: JSON.stringify(instituteProfile)
+                    });
+                } catch (error) {
+                    alert("Your workspace could not be saved: " + error.message);
+                    return;
+                }
 
 
                 alert(
