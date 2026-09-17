@@ -136,6 +136,10 @@
         }
 
         .role {
+            appearance: none;
+            color: inherit;
+            font: inherit;
+            width: 100%;
             cursor: pointer;
             padding: 15px 8px;
             text-align: center;
@@ -148,6 +152,13 @@
         .role:hover {
             transform: translateY(-2px);
             border-color: #55d6ff;
+        }
+
+        .role:focus-visible,
+        .show-password:focus-visible,
+        .signup button:focus-visible {
+            outline: 3px solid #55d6ff;
+            outline-offset: 3px;
         }
 
         .role.active {
@@ -258,7 +269,12 @@
             font-size: 14px;
         }
 
-        .signup span {
+        .signup button {
+            appearance: none;
+            border: 0;
+            background: transparent;
+            padding: 0;
+            font: inherit;
             color: #55d6ff;
             cursor: pointer;
             font-weight: bold;
@@ -374,28 +390,28 @@
 
             <div class="roles">
 
-                <div class="role active" onclick="selectRole('student', this)">
+                <button class="role active" type="button" aria-pressed="true" onclick="selectRole('student', this)">
 
                     <div class="role-icon">👨‍🎓</div>
                     <div class="role-name">Student</div>
 
-                </div>
+                </button>
 
 
-                <div class="role" onclick="selectRole('institute', this)">
+                <button class="role" type="button" aria-pressed="false" onclick="selectRole('institute', this)">
 
                     <div class="role-icon">🏫</div>
                     <div class="role-name">Institute</div>
 
-                </div>
+                </button>
 
 
-                <div class="role" onclick="selectRole('industry', this)">
+                <button class="role" type="button" aria-pressed="false" onclick="selectRole('industry', this)">
 
                     <div class="role-icon">🏢</div>
                     <div class="role-name">Industry</div>
 
-                </div>
+                </button>
 
             </div>
 
@@ -423,7 +439,7 @@
 
                 <div class="input-group">
 
-                    <label>Email Address</label>
+                    <label for="email">Email Address</label>
 
                     <input type="email" id="email" placeholder="Enter your email" required>
 
@@ -432,15 +448,15 @@
 
                 <div class="input-group">
 
-                    <label>Password</label>
+                    <label for="password">Password</label>
 
                     <div class="password-box">
 
                         <input type="password" id="password" placeholder="Enter your password" required>
 
-                        <span class="show-password" onclick="togglePassword()">
+                        <button class="show-password" type="button" aria-controls="password" aria-pressed="false" onclick="togglePassword()">
                             Show
-                        </span>
+                        </button>
 
                     </div>
 
@@ -457,7 +473,7 @@
             <div class="signup">
 
                 New to SkillBridge?
-                <span onclick="signup()">Create an Account</span>
+                <button type="button" onclick="signup()">Create an Account</button>
 
             </div>
 
@@ -485,9 +501,11 @@
 
             document.querySelectorAll(".role").forEach(function (item) {
                 item.classList.remove("active");
+                item.setAttribute("aria-pressed", "false");
             });
 
             element.classList.add("active");
+            element.setAttribute("aria-pressed", "true");
 
 
             const title =
@@ -545,11 +563,13 @@
 
                 password.type = "text";
                 button.textContent = "Hide";
+                button.setAttribute("aria-pressed", "true");
 
             } else {
 
                 password.type = "password";
                 button.textContent = "Show";
+                button.setAttribute("aria-pressed", "false");
 
             }
 
